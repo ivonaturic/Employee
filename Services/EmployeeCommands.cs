@@ -114,63 +114,141 @@ namespace Employee.Services
                     }
                     while(!validation.ValidationString(devfirstName));
 
+                    string devlastName;
+                    do
+                    {
+                        Console.WriteLine("Unesi prezime: ");
+                        devlastName = Console.ReadLine();
+                    }
+                    while(!validation.ValidationString(devlastName));
 
-                    Console.WriteLine("Unesi prezime: ");
-                    string devlastName = Console.ReadLine();
-                    if(!validation.ValidationString(devlastName)) return;
-                    Console.WriteLine("Unesi broj godina: ");
-                    string devAgestring = Console.ReadLine();
-                    if(!validation.ValidationInt(devAgestring)) return;
-                    int devAge = int.Parse(devAgestring);
-                    Console.WriteLine("Unesi projekt: ");
-                    string devProject = Console.ReadLine();
-                    if(!validation.ValidationString(devProject)) return;
-                    Console.WriteLine("Je li student? true/false ");
-                    string isStudentstring = Console.ReadLine();
-                    if(!validation.ValidationBoolean(isStudentstring)) return;
-                    bool isStudent = bool.Parse(isStudentstring);
+                    string devAgestring;
+                    int devAge;
+                    do
+                    {
+                        Console.WriteLine("Unesi broj godina: ");
+                        devAgestring = Console.ReadLine();
+                    }
+                    while(!validation.ValidationInt(devAgestring));
+                    devAge = int.Parse(devAgestring);
+
+                    string devProject;
+                    do
+                    {
+                        Console.WriteLine("Unesi projekt: ");
+                        devProject = Console.ReadLine();
+                    }
+                    while(!validation.ValidationString(devProject));
+
+                    string isStudentstring;
+                    bool isStudent;
+                    do
+                    {
+                        Console.WriteLine("Je li student? true/false ");
+                        isStudentstring = Console.ReadLine();
+                    }
+                    while(!validation.ValidationBoolean(isStudentstring));
+                    isStudent = bool.Parse(isStudentstring);
+
                     storage.AddEmployees(new Developer(devfirstName, devlastName, devAge, devProject, isStudent));
                     break;
+
                 case "designer":
-                    Console.WriteLine("Unesi ime: ");
-                    string desfirstName = Console.ReadLine();
-                    if(!validation.ValidationString(desfirstName)) return;
-                    Console.WriteLine("Unesi prezime: ");
-                    string deslastName = Console.ReadLine();
-                    if(!validation.ValidationString(deslastName)) return;
-                    Console.WriteLine("Unesi broj godina: ");
-                    string desAgestring = Console.ReadLine();
-                    if(!validation.ValidationInt(desAgestring)) return;
-                    int desAge = int.Parse(desAgestring);
-                    Console.WriteLine("Unesi projekt: ");
-                    string desProject = Console.ReadLine();
-                    if(!validation.ValidationString(desProject)) return;
-                    Console.WriteLine("Zna li crtati? true/false ");
-                    string descanDrawstring = Console.ReadLine();
-                    if(!validation.ValidationBoolean(descanDrawstring)) return;
-                    bool descanDraw = bool.Parse(descanDrawstring);
+                    string desfirstName;
+                    do
+                    {
+                        Console.WriteLine("Unesi ime: ");
+                        desfirstName = Console.ReadLine();
+                    }
+                    while(!validation.ValidationString(desfirstName));
+
+                    string deslastName;
+                    do
+                    {
+                        Console.WriteLine("Unesi prezime: ");
+                        deslastName = Console.ReadLine();
+                    }
+                    while(!validation.ValidationString(deslastName));
+
+                    string desAgestring;
+                    int desAge;
+                    do
+                    {
+                        Console.WriteLine("Unesi broj godina: ");
+                        desAgestring = Console.ReadLine();
+                    }
+                    while(!validation.ValidationInt(desAgestring));
+                    desAge = int.Parse(desAgestring);
+
+                    string desProject;
+                    do
+                    {
+                        Console.WriteLine("Unesi projekt: ");
+                        desProject = Console.ReadLine();
+                    }
+                    while(!validation.ValidationString(desProject));
+
+                    string descanDrawstring;
+                    bool descanDraw;
+                    do
+                    {
+                        Console.WriteLine("Zna li crtati? true/false ");
+                        descanDrawstring = Console.ReadLine();
+                    }
+                    while(!validation.ValidationBoolean(descanDrawstring));
+                    descanDraw = bool.Parse(descanDrawstring);
+
                     storage.AddEmployees(new Designer(desfirstName, deslastName, desAge, desProject, descanDraw));
                     break;
+
                 case "softwaretester":
-                    Console.WriteLine("Unesi ime: ");
-                    string stfirstName = Console.ReadLine();
-                    if(!validation.ValidationString(stfirstName)) return;
-                    Console.WriteLine("Unesi prezime: ");
-                    string stlastName = Console.ReadLine();
-                    if(!validation.ValidationString(stlastName)) return;
-                    Console.WriteLine("Unesi broj godina: ");
-                    string stAgestring = Console.ReadLine();
-                    if(!validation.ValidationInt(stAgestring)) return;
-                    int stAge = int.Parse(stAgestring);
-                    Console.WriteLine("Unesi projekt: ");
-                    string stProject = Console.ReadLine();
-                    if(!validation.ValidationString(stProject)) return;
-                    Console.WriteLine("Zna li crtati? true/false ");
-                    string stUsesAutomatedTestsstring = Console.ReadLine();
-                    if(!validation.ValidationBoolean(stUsesAutomatedTestsstring)) return;
-                    bool stUsesAutomatedTests = bool.Parse(stUsesAutomatedTestsstring);
+                    string stfirstName;
+                    do
+                    {
+                        Console.WriteLine("Unesi ime: ");
+                        stfirstName = Console.ReadLine();
+                    }
+                    while(!validation.ValidationString(stfirstName));
+
+                    string stlastName;
+                    do
+                    {
+                        Console.WriteLine("Unesi prezime: ");
+                        stlastName = Console.ReadLine();
+                    }
+                    while(!validation.ValidationString(stlastName));
+
+                    string stAgestring;
+                    int stAge;
+                    do
+                    {
+                        Console.WriteLine("Unesi broj godina: ");
+                        stAgestring = Console.ReadLine();
+                    }
+                    while(!validation.ValidationInt(stAgestring));
+                    stAge = int.Parse(stAgestring);
+
+                    string stProject;
+                    do
+                    {
+                        Console.WriteLine("Unesi projekt: ");
+                        stProject = Console.ReadLine();
+                    }
+                    while(!validation.ValidationString(stProject));
+
+                    string stUsesAutomatedTestsstring;
+                    bool stUsesAutomatedTests;
+                    do
+                    {
+                        Console.WriteLine("Zna li crtati? true/false ");
+                        stUsesAutomatedTestsstring = Console.ReadLine();
+                    }
+                    while(!validation.ValidationBoolean(stUsesAutomatedTestsstring));
+                    stUsesAutomatedTests = bool.Parse(stUsesAutomatedTestsstring);
+
                     storage.AddEmployees(new SoftwareTester(stfirstName, stlastName, stAge, stProject, stUsesAutomatedTests));
                     break;
+
                 default:
                     Console.WriteLine("Nepostojeća uloga!");
                     break;
