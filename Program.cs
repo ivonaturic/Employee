@@ -18,7 +18,7 @@ namespace Employee
             while (true)
             {
 
-                Console.WriteLine("Dostupne naredbe: Dodaj, Ukloni, Prikazi, Popis, <ime_uloge>Popis ");
+                Console.WriteLine("Dostupne naredbe: Dodaj, Ukloni, Prikazi, Popis, Uloga ");
                 
                 string opcija = Console.ReadLine();
 
@@ -30,20 +30,20 @@ namespace Employee
                         command.AddEmployees(uloga);
                         break;
                     case "ukloni":
-                        Console.WriteLine("Prezime: ");
+                        Console.WriteLine("Unesite prezime zaposlenika kojeg želite ukloniti: ");
                         string prezime = Console.ReadLine();
                         command.RemoveEmployees(prezime);
                         break;
                     case "prikazi":
-                        Console.WriteLine("Prikaz zaposlenika: ");
+                        Console.WriteLine("Prikaz svih zaposlenika: ");
                         command.DisplayAllEmployees();
                         break;
                     case "popis":
-                        Console.WriteLine("Prikaz zaposlenika: ");
+                        Console.WriteLine("Prikaz zaposlenika bez CEO: ");
                         command.DisplayEmployeesWithoutCEO();
                         break;
-                    case "<ime_uloge>popis":
-                        Console.WriteLine("Unesite ulogu zaposlenika: ");
+                    case "uloga":
+                        Console.WriteLine("Prikaz zaposlenika prema ulozi: ");
                         string role = Console.ReadLine();
                         command.ListByRole(role);
                         break;
