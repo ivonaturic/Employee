@@ -13,7 +13,7 @@ namespace Employee.Validation
         {
             if (string.IsNullOrWhiteSpace(input)) 
             {
-                Console.WriteLine("Unese ne može biti prazan!");
+                Console.WriteLine("Unes ne može biti prazan!");
                 return false;
             }
             return true;
@@ -52,6 +52,19 @@ namespace Employee.Validation
                 return false;
             }
             
+        }
+        public bool ValidationRole(string x) 
+        {
+            if (x == "ceo" || x == "projectmanager" || x == "developer" || x == "designer" || x == "softwaretester")
+            {
+
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Nepostojeća uloga!");
+                return false;
+            }
         }
     }
 }

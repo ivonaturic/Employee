@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Employee.Services;
+using Employee.Validation;
 
 namespace Employee
 {
@@ -15,6 +16,7 @@ namespace Employee
         static void Main(string[] args)
         {
             EmployeeCommands command = new EmployeeCommands();
+            EmployeeValidation validation = new EmployeeValidation();
             while (true)
             {
 
@@ -43,9 +45,16 @@ namespace Employee
                         command.DisplayEmployeesWithoutCEO();
                         break;
                     case "uloga":
-                        Console.WriteLine("Prikaz zaposlenika prema ulozi: ");
-                        string role = Console.ReadLine();
-                        command.ListByRole(role);
+                        Console.WriteLine("Uloge: CEO, ProjectManager, Developer, Designer, SoftwareTester");
+                        Console.WriteLine("Unesi ulogu: ");
+                        string role = Console.ReadLine().ToLower();
+                        if (validation.ValidationString(role))
+                        {
+                            if (validation.ValidationRole(role))
+                            {
+                                command.ListByRole(role);
+                            }
+                        }
                         break;
                     default:
                         Console.WriteLine("Nepostojeća naredba!");
