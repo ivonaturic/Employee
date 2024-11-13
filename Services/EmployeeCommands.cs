@@ -14,17 +14,17 @@ namespace Employee.Services
     {
         EmployeeStorage storage = new EmployeeStorage();
         EmployeeValidation validation = new EmployeeValidation();
-        private CEO ceo;
+        //private CEO ceo;
 
         public void AddEmployees(string role)
         {
             switch (role.ToLower())
             {
                 case "ceo":
-                    var firstceo = storage.AllEmployees().Where(e => e.Equals(GetType().Name == "CEO"));
-                    if (firstceo != null)
+                    var firstceo = storage.AllEmployees().Where(e => e.GetType().Name == "CEO");
+                    if (firstceo.Any())
                     {
-                        Console.WriteLine("CEO vec postoji");
+                        Console.WriteLine("CEO vec postoji, može biti samo jedan!");
                     }
                     else
                     {
@@ -33,15 +33,17 @@ namespace Employee.Services
                         {
                             Console.WriteLine("Unesi ime: ");
                             ceofirstName = Console.ReadLine();
+
                         }
-                        while(!validation.ValidationString(ceofirstName));
+                        while (!validation.ValidationString(ceofirstName) || !validation.ValidationNameOrLastName(ceofirstName));
+
                         string ceolastName;
                         do
                         {
                             Console.WriteLine("Unesi prezime: ");
                             ceolastName = Console.ReadLine();
                         }
-                        while(!validation.ValidationString(ceolastName));
+                        while (!validation.ValidationString(ceolastName) || !validation.ValidationNameOrLastName(ceolastName));
                         string ceoagestring;
                         int ceoAge;
                         do
@@ -49,7 +51,7 @@ namespace Employee.Services
                             Console.WriteLine("Unesi broj godina: ");
                             ceoagestring = Console.ReadLine();
                         }
-                        while(!validation.ValidationInt(ceoagestring));
+                        while (!validation.ValidationInt(ceoagestring));
                         ceoAge = int.Parse(ceoagestring);
 
                         string ceoYearsstring;
@@ -59,11 +61,20 @@ namespace Employee.Services
                             Console.WriteLine("Unesi broj godina kao CEO: ");
                             ceoYearsstring = Console.ReadLine();
                         }
-                        while(!validation.ValidationInt(ceoYearsstring));
+                        while (!validation.ValidationInt(ceoYearsstring));
                         ceoYears = int.Parse(ceoYearsstring);
 
-                        ceo = new CEO(ceofirstName, ceolastName, ceoAge, ceoYears);
-                        storage.AddEmployees(ceo);
+                        try
+                        {
+                            storage.AddEmployees(new CEO(ceofirstName, ceolastName, ceoAge, ceoYears));
+                            Console.WriteLine("CEO je uspješno dodan!");
+
+                        }
+                        catch
+                        {
+                            Console.WriteLine("CEO nije moguće dodati!");
+                        }
+                        //storage.AddEmployees(ceo);
                     }
                     break;
                 case "projectmanager":
@@ -74,7 +85,7 @@ namespace Employee.Services
                         Console.WriteLine("Unesi ime: ");
                         pmfirstName = Console.ReadLine();
                     }
-                    while(!validation.ValidationString(pmfirstName));
+                    while(!validation.ValidationString(pmfirstName) || !validation.ValidationNameOrLastName(pmfirstName));
 
                     string pmlastName;
                     do
@@ -82,7 +93,7 @@ namespace Employee.Services
                         Console.WriteLine("Unesi prezime: ");
                         pmlastName = Console.ReadLine();
                     }
-                    while(!validation.ValidationString(pmlastName));
+                    while(!validation.ValidationString(pmlastName) || !validation.ValidationNameOrLastName(pmlastName));
 
                     string pmAgestring;
                     int pmAge;
@@ -102,7 +113,15 @@ namespace Employee.Services
                     }
                     while(!validation.ValidationString(pmProject));
 
-                    storage.AddEmployees(new ProjectManager(pmfirstName, pmlastName, pmAge, pmProject));
+                    try
+                    {
+                        storage.AddEmployees(new ProjectManager(pmfirstName, pmlastName, pmAge, pmProject));
+                        Console.WriteLine("ProjectManager je uspješno dodan!");
+                    }
+                    catch 
+                    {
+                        Console.WriteLine("ProjectManagera nije moguće dodati!");
+                    }
                     break;
 
                 case "developer":
@@ -112,7 +131,7 @@ namespace Employee.Services
                         Console.WriteLine("Unesi ime: ");
                         devfirstName = Console.ReadLine();
                     }
-                    while(!validation.ValidationString(devfirstName));
+                    while(!validation.ValidationString(devfirstName) || !validation.ValidationNameOrLastName(devfirstName));
 
                     string devlastName;
                     do
@@ -120,7 +139,7 @@ namespace Employee.Services
                         Console.WriteLine("Unesi prezime: ");
                         devlastName = Console.ReadLine();
                     }
-                    while(!validation.ValidationString(devlastName));
+                    while(!validation.ValidationString(devlastName) || !validation.ValidationNameOrLastName(devlastName));
 
                     string devAgestring;
                     int devAge;
@@ -150,7 +169,15 @@ namespace Employee.Services
                     while(!validation.ValidationBoolean(isStudentstring));
                     isStudent = bool.Parse(isStudentstring);
 
-                    storage.AddEmployees(new Developer(devfirstName, devlastName, devAge, devProject, isStudent));
+                    try
+                    {
+                        storage.AddEmployees(new Developer(devfirstName, devlastName, devAge, devProject, isStudent));
+                        Console.WriteLine("Developer je dodan!");
+                    }
+                    catch 
+                    {
+                        Console.WriteLine("Developera nije moguće dodati!");
+                    }
                     break;
 
                 case "designer":
@@ -160,7 +187,7 @@ namespace Employee.Services
                         Console.WriteLine("Unesi ime: ");
                         desfirstName = Console.ReadLine();
                     }
-                    while(!validation.ValidationString(desfirstName));
+                    while(!validation.ValidationString(desfirstName) || !validation.ValidationNameOrLastName(desfirstName));
 
                     string deslastName;
                     do
@@ -168,7 +195,7 @@ namespace Employee.Services
                         Console.WriteLine("Unesi prezime: ");
                         deslastName = Console.ReadLine();
                     }
-                    while(!validation.ValidationString(deslastName));
+                    while(!validation.ValidationString(deslastName) || !validation.ValidationNameOrLastName(deslastName));
 
                     string desAgestring;
                     int desAge;
@@ -198,7 +225,15 @@ namespace Employee.Services
                     while(!validation.ValidationBoolean(descanDrawstring));
                     descanDraw = bool.Parse(descanDrawstring);
 
-                    storage.AddEmployees(new Designer(desfirstName, deslastName, desAge, desProject, descanDraw));
+                    try
+                    {
+                        storage.AddEmployees(new Designer(desfirstName, deslastName, desAge, desProject, descanDraw));
+                        Console.WriteLine("Designer je dodan!");
+                    }
+                    catch 
+                    {
+                        Console.WriteLine("Designera nije moguće dodati!");
+                    }
                     break;
 
                 case "softwaretester":
@@ -208,7 +243,7 @@ namespace Employee.Services
                         Console.WriteLine("Unesi ime: ");
                         stfirstName = Console.ReadLine();
                     }
-                    while(!validation.ValidationString(stfirstName));
+                    while(!validation.ValidationString(stfirstName) || !validation.ValidationNameOrLastName(stfirstName));
 
                     string stlastName;
                     do
@@ -216,7 +251,7 @@ namespace Employee.Services
                         Console.WriteLine("Unesi prezime: ");
                         stlastName = Console.ReadLine();
                     }
-                    while(!validation.ValidationString(stlastName));
+                    while(!validation.ValidationString(stlastName) || !validation.ValidationNameOrLastName(stlastName));
 
                     string stAgestring;
                     int stAge;
@@ -246,7 +281,15 @@ namespace Employee.Services
                     while(!validation.ValidationBoolean(stUsesAutomatedTestsstring));
                     stUsesAutomatedTests = bool.Parse(stUsesAutomatedTestsstring);
 
-                    storage.AddEmployees(new SoftwareTester(stfirstName, stlastName, stAge, stProject, stUsesAutomatedTests));
+                    try
+                    {
+                        storage.AddEmployees(new SoftwareTester(stfirstName, stlastName, stAge, stProject, stUsesAutomatedTests));
+                        Console.WriteLine("SoftwareTester je dodan!");
+                    }
+                    catch 
+                    {
+                        Console.WriteLine("SoftwareTestter nije dodan!");
+                    }
                     break;
 
                 default:
@@ -271,7 +314,7 @@ namespace Employee.Services
         public void DisplayAllEmployees()
         {
             var allemployees = storage.AllEmployees();
-            if (allemployees != null)
+            if (allemployees.Any())
             {
                 foreach (var employee in allemployees)
                 {
@@ -286,7 +329,7 @@ namespace Employee.Services
         public void DisplayEmployeesWithoutCEO()
         {
             var employees = storage.AllEmployees().Where(e => e.GetType().Name != "CEO");
-            if (employees != null)
+            if (employees.Any())
             {
                 foreach (var employ in employees)
                 {
@@ -301,7 +344,7 @@ namespace Employee.Services
         public void ListByRole(string role)
         {
             var listbyrole = storage.AllEmployees().Where(e=>e.GetType().Name.ToLower() == role.ToLower());
-            if (listbyrole != null)
+            if (listbyrole.Any())
             {
                 foreach (var employee in listbyrole)
                 {
