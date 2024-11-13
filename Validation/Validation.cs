@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Employee.Validation
@@ -65,6 +66,20 @@ namespace Employee.Validation
                 Console.WriteLine("Nepostojeća uloga!");
                 return false;
             }
+        }
+        public bool ValidationNameOrLastName(string x) 
+        {
+            if (Regex.IsMatch(x, @"^[a-zA-Z]+$"))
+            {
+                return true;
+            }
+            else 
+            {
+                Console.WriteLine("Unos mora biti slovo!");
+                return false;
+                
+            }
+            
         }
     }
 }
