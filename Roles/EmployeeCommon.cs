@@ -4,32 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Employee.Common 
-{
-    public static class EmployeeCommon 
-    {
-        public static void Naredbe() 
-        {
-            Console.WriteLine("Possible commands: Help, Add, Remove, Display, List, RoleList");
-        }
-    }
-}
-
-/*
-namespace Employee.Common
+namespace Employee.Roles
 {
     public abstract class EmployeeCommon
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
 
-        public EmployeeCommon(string firstName, string lastName, int age)
+        public EmployeeCommon(int id, string firstName, string lastName, int age)
         {
+            Id = id;
             FirstName = firstName;
             LastName = lastName;
             Age = age;
         }
-        public abstract string GetInfo();
+        public virtual string GetInfo() => $"Id = {Id} {FirstName} {LastName} Age = {Age}";
     }
-}*/
+}

@@ -11,14 +11,14 @@ namespace Employee.Roles
     {
         public int CeoYears { get; set; }
 
-        public CEO(string firstName, string lastName, int age, int ceoYears) : base(firstName, lastName, age)
+        public CEO(int id, string firstName, string lastName, int age, int ceoYears) : base(id, firstName, lastName, age)
         {
             CeoYears = ceoYears;
         }
-        public override string GetInfo() => $"{FirstName} {LastName} Godine = {Age} CEO = {CeoYears}";
+        public override string GetInfo() => $"Id = {Id} {FirstName} {LastName} Age = {Age} CEOAge = {CeoYears}";
 
     }
-    public class ProjectManager : EmployeeCommon
+    /*public class ProjectManager : EmployeeCommon
     {
         public string Project { get; set; }
 
@@ -67,5 +67,5 @@ namespace Employee.Roles
         }
         public override string GetInfo() => $"{FirstName} {LastName} Godine = {Age} Projekt = {Project} Automatizirani test = {UseAutomatedTests}";
 
-    }
+    }*/
 }

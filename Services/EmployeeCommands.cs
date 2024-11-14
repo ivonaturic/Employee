@@ -13,7 +13,7 @@ namespace Employee.Services
     public class EmployeeCommands
     {
         EmployeeStorage storage = new EmployeeStorage();
-        EmployeeValidation validation = new EmployeeValidation();
+        //EmployeeValidation validation = new EmployeeValidation();
         //private CEO ceo;
 
         public void AddEmployees(string role)
@@ -40,7 +40,7 @@ namespace Employee.Services
                             }
 
                         }
-                        while (!validation.ValidationString(ceofirstName) || !validation.ValidationNameOrLastName(ceofirstName));
+                        while (!EmployeeValidation.ValidationString(ceofirstName) || !EmployeeValidation.ValidationNameOrLastName(ceofirstName));
 
                         string ceolastName;
                         do
@@ -53,7 +53,7 @@ namespace Employee.Services
                                 return;
                             }
                         }
-                        while (!validation.ValidationString(ceolastName) || !validation.ValidationNameOrLastName(ceolastName));
+                        while (!EmployeeValidation.ValidationString(ceolastName) || !EmployeeValidation.ValidationNameOrLastName(ceolastName);
                         string ceoagestring;
                         int ceoAge;
                         do
@@ -66,7 +66,7 @@ namespace Employee.Services
                                 return;
                             }
                         }
-                        while (!validation.ValidationInt(ceoagestring));
+                        while (!EmployeeValidation.ValidationAge(ceoagestring));
                         ceoAge = int.Parse(ceoagestring);
 
                         string ceoYearsstring;
@@ -81,7 +81,7 @@ namespace Employee.Services
                                 return;
                             }
                         }
-                        while (!validation.ValidationInt(ceoYearsstring));
+                        while (!EmployeeValidation.ValidationAge(ceoYearsstring));
                         ceoYears = int.Parse(ceoYearsstring);
 
                         try
@@ -110,7 +110,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationString(pmfirstName) || !validation.ValidationNameOrLastName(pmfirstName));
+                    while(!EmployeeValidation.ValidationString(pmfirstName) || !EmployeeValidation.ValidationNameOrLastName(pmfirstName));
 
                     string pmlastName;
                     do
@@ -123,7 +123,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationString(pmlastName) || !validation.ValidationNameOrLastName(pmlastName));
+                    while(!EmployeeValidation.ValidationString(pmlastName) || !EmployeeValidation.ValidationNameOrLastName(pmlastName));
 
                     string pmAgestring;
                     int pmAge;
@@ -137,7 +137,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationInt(pmAgestring));
+                    while(!EmployeeValidation.ValidationAge(pmAgestring));
                     pmAge = int.Parse(pmAgestring);
 
                     string pmProject;
@@ -151,7 +151,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationString(pmProject));
+                    while(!EmployeeValidation.ValidationString(pmProject));
 
                     try
                     {
@@ -176,7 +176,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationString(devfirstName) || !validation.ValidationNameOrLastName(devfirstName));
+                    while(!EmployeeValidation.ValidationString(devfirstName) || !EmployeeValidation.ValidationNameOrLastName(devfirstName));
 
                     string devlastName;
                     do
@@ -189,7 +189,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationString(devlastName) || !validation.ValidationNameOrLastName(devlastName));
+                    while(!EmployeeValidation.ValidationString(devlastName) || !EmployeeValidation.ValidationNameOrLastName(devlastName));
 
                     string devAgestring;
                     int devAge;
@@ -203,7 +203,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationInt(devAgestring));
+                    while(!EmployeeValidation.ValidationAge(devAgestring));
                     devAge = int.Parse(devAgestring);
 
                     string devProject;
@@ -217,7 +217,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationString(devProject));
+                    while(!EmployeeValidation.ValidationString(devProject));
 
                     string isStudentstring;
                     bool isStudent;
@@ -231,7 +231,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationBoolean(isStudentstring));
+                    while(!EmployeeValidation.ValidationBoolean(isStudentstring));
                     isStudent = bool.Parse(isStudentstring);
 
                     try
@@ -257,7 +257,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationString(desfirstName) || !validation.ValidationNameOrLastName(desfirstName));
+                    while(!EmployeeValidation.ValidationString(desfirstName) || !EmployeeValidation.ValidationNameOrLastName(desfirstName));
 
                     string deslastName;
                     do
@@ -270,7 +270,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationString(deslastName) || !validation.ValidationNameOrLastName(deslastName));
+                    while(!EmployeeValidation.ValidationString(deslastName) || !EmployeeValidation.ValidationNameOrLastName(deslastName));
 
                     string desAgestring;
                     int desAge;
@@ -284,7 +284,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationInt(desAgestring));
+                    while(!EmployeeValidation.ValidationAge(desAgestring));
                     desAge = int.Parse(desAgestring);
 
                     string desProject;
@@ -298,7 +298,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationString(desProject));
+                    while(!EmployeeValidation.ValidationString(desProject));
 
                     string descanDrawstring;
                     bool descanDraw;
@@ -312,7 +312,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationBoolean(descanDrawstring));
+                    while(!EmployeeValidation.ValidationBoolean(descanDrawstring));
                     descanDraw = bool.Parse(descanDrawstring);
 
                     try
@@ -338,7 +338,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationString(stfirstName) || !validation.ValidationNameOrLastName(stfirstName));
+                    while(!EmployeeValidation.ValidationString(stfirstName) || !EmployeeValidation.ValidationNameOrLastName(stfirstName));
 
                     string stlastName;
                     do
@@ -351,7 +351,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationString(stlastName) || !validation.ValidationNameOrLastName(stlastName));
+                    while(!EmployeeValidation.ValidationString(stlastName) || !EmployeeValidation.ValidationNameOrLastName(stlastName));
 
                     string stAgestring;
                     int stAge;
@@ -365,7 +365,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationInt(stAgestring));
+                    while(!EmployeeValidation.ValidationAge(stAgestring));
                     stAge = int.Parse(stAgestring);
 
                     string stProject;
@@ -379,7 +379,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationString(stProject));
+                    while(!EmployeeValidation.ValidationString(stProject));
 
                     string stUsesAutomatedTestsstring;
                     bool stUsesAutomatedTests;
@@ -393,7 +393,7 @@ namespace Employee.Services
                             return;
                         }
                     }
-                    while(!validation.ValidationBoolean(stUsesAutomatedTestsstring));
+                    while(!EmployeeValidation.ValidationBoolean(stUsesAutomatedTestsstring));
                     stUsesAutomatedTests = bool.Parse(stUsesAutomatedTestsstring);
 
                     try

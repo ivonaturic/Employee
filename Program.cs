@@ -16,11 +16,11 @@ namespace Employee
         static void Main(string[] args)
         {
             EmployeeCommands command = new EmployeeCommands();
-            EmployeeValidation validation = new EmployeeValidation();
+            //EmployeeValidation validation = new EmployeeValidation();
             while (true)
             {
 
-                Console.WriteLine("Dostupne naredbe: Dodaj, Ukloni, Prikazi, Popis, Uloga ");
+                Console.WriteLine("Possible commands: Help, Add, Remove, Display, List, RoleList");
                 
                 string opcija = Console.ReadLine();
 
@@ -48,9 +48,9 @@ namespace Employee
                         Console.WriteLine("Uloge: CEO, ProjectManager, Developer, Designer, SoftwareTester");
                         Console.WriteLine("Unesi ulogu: ");
                         string role = Console.ReadLine().ToLower();
-                        if (validation.ValidationString(role))
+                        if (EmployeeValidation.ValidationString(role))
                         {
-                            if (validation.ValidationRole(role))
+                            if (EmployeeValidation.ValidationRole(role))
                             {
                                 command.ListByRole(role);
                             }

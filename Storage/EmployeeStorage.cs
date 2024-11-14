@@ -12,7 +12,7 @@ namespace Employee.Storage
     {
         private List<EmployeeCommon> employeelist = new List<EmployeeCommon>();
         /*{
-            new CEO("Matija","Milic",25,0),
+            new CEO("Matija","Milic",55,10),
             new ProjectManager("Ivan","Zeko",28,"projekt"),
             new ProjectManager("Martina","Peric",32,"projekt2"),
             new Developer("Petar","Perica",44,"project",false),

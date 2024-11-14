@@ -1,0 +1,20 @@
+﻿using Employee.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Employee.Roles
+{ 
+    public class ProjectManager : EmployeeCommon
+    {
+        public string Project { get; set; }
+
+        public ProjectManager(int id, string firstName, string lastName, int age, string project) : base(id, firstName, lastName, age)
+        {
+            Project = project;
+        }
+        public override string GetInfo() => $"{Id} {FirstName} {LastName} Age = {Age} Project = {Project}";
+    } 
+}

@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 namespace Employee.Validation
 {
 
-    public class EmployeeValidation
+    public static class EmployeeValidation
     {
-        public bool ValidationString(string input) 
+        public static bool ValidationString(string input) 
         {
             if (string.IsNullOrWhiteSpace(input)) 
             {
-                Console.WriteLine("Unes ne može biti prazan!");
+                Console.WriteLine("Entry cannot be empty.");
                 return false;
             }
             return true;
         }
-        public bool ValidationBoolean(string x)
+        public static bool ValidationBoolean(string x)
         {
             bool pp;
             if (bool.TryParse(x, out pp))
@@ -28,33 +28,33 @@ namespace Employee.Validation
             }
             else
             {
-                Console.WriteLine("Unos mora biti true ili false!");
+                Console.WriteLine("The input must be true or false!");
                 return false;
             }
         }
-        public bool ValidationInt(string x)
+        public static bool ValidationAge(string x)
         {
             int broj;
             if (int.TryParse(x, out broj))
             {
-                if (broj >= 0)
+                if (broj>=18 && broj<= 67)
                 {
                     return true;
                 }
                 else 
                 {
-                    Console.WriteLine("Unos ne može biti negativan!");
+                    Console.WriteLine("Age must be between 18 and 67!");
                     return false;
                 }
             }
             else 
             {
-                Console.WriteLine("Unos mora biti broj!");
+                Console.WriteLine("The entry must be a number!");
                 return false;
             }
             
         }
-        public bool ValidationRole(string x) 
+        public static bool ValidationRole(string x) 
         {
             if (x == "ceo" || x == "projectmanager" || x == "developer" || x == "designer" || x == "softwaretester")
             {
@@ -63,11 +63,11 @@ namespace Employee.Validation
             }
             else
             {
-                Console.WriteLine("Nepostojeća uloga!");
+                Console.WriteLine("Non-existent role");
                 return false;
             }
         }
-        public bool ValidationNameOrLastName(string x) 
+        public static bool ValidationNameOrLastName(string x) 
         {
             if (Regex.IsMatch(x, @"^[a-zA-Z]+$"))
             {
@@ -75,7 +75,7 @@ namespace Employee.Validation
             }
             else 
             {
-                Console.WriteLine("Unos mora biti slovo!");
+                Console.WriteLine("The entry must be a letter!");
                 return false;
                 
             }
