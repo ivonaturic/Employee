@@ -33,6 +33,11 @@ namespace Employee.Services
                         {
                             Console.WriteLine("Unesi ime: ");
                             ceofirstName = Console.ReadLine();
+                            if (ceofirstName == "exit") 
+                            {
+                                Console.WriteLine("Prekid unosa!");
+                                return;
+                            }
 
                         }
                         while (!validation.ValidationString(ceofirstName) || !validation.ValidationNameOrLastName(ceofirstName));
@@ -42,6 +47,11 @@ namespace Employee.Services
                         {
                             Console.WriteLine("Unesi prezime: ");
                             ceolastName = Console.ReadLine();
+                            if (ceolastName == "exit")
+                            {
+                                Console.WriteLine("Prekid unosa!");
+                                return;
+                            }
                         }
                         while (!validation.ValidationString(ceolastName) || !validation.ValidationNameOrLastName(ceolastName));
                         string ceoagestring;
@@ -50,6 +60,11 @@ namespace Employee.Services
                         {
                             Console.WriteLine("Unesi broj godina: ");
                             ceoagestring = Console.ReadLine();
+                            if (ceoagestring == "exit")
+                            {
+                                Console.WriteLine("Prekid unosa!");
+                                return;
+                            }
                         }
                         while (!validation.ValidationInt(ceoagestring));
                         ceoAge = int.Parse(ceoagestring);
@@ -60,6 +75,11 @@ namespace Employee.Services
                         {
                             Console.WriteLine("Unesi broj godina kao CEO: ");
                             ceoYearsstring = Console.ReadLine();
+                            if (ceoYearsstring == "exit")
+                            {
+                                Console.WriteLine("Prekid unosa!");
+                                return;
+                            }
                         }
                         while (!validation.ValidationInt(ceoYearsstring));
                         ceoYears = int.Parse(ceoYearsstring);
@@ -84,6 +104,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi ime: ");
                         pmfirstName = Console.ReadLine();
+                        if (pmfirstName == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationString(pmfirstName) || !validation.ValidationNameOrLastName(pmfirstName));
 
@@ -92,6 +117,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi prezime: ");
                         pmlastName = Console.ReadLine();
+                        if (pmlastName == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationString(pmlastName) || !validation.ValidationNameOrLastName(pmlastName));
 
@@ -101,6 +131,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi broj godina: ");
                         pmAgestring = Console.ReadLine();
+                        if (pmAgestring == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationInt(pmAgestring));
                     pmAge = int.Parse(pmAgestring);
@@ -110,6 +145,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi projekt: ");
                         pmProject = Console.ReadLine();
+                        if (pmProject == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationString(pmProject));
 
@@ -130,6 +170,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi ime: ");
                         devfirstName = Console.ReadLine();
+                        if (devfirstName == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationString(devfirstName) || !validation.ValidationNameOrLastName(devfirstName));
 
@@ -138,6 +183,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi prezime: ");
                         devlastName = Console.ReadLine();
+                        if (devlastName == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationString(devlastName) || !validation.ValidationNameOrLastName(devlastName));
 
@@ -147,6 +197,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi broj godina: ");
                         devAgestring = Console.ReadLine();
+                        if (devAgestring == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationInt(devAgestring));
                     devAge = int.Parse(devAgestring);
@@ -156,6 +211,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi projekt: ");
                         devProject = Console.ReadLine();
+                        if (devProject == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationString(devProject));
 
@@ -165,6 +225,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Je li student? true/false ");
                         isStudentstring = Console.ReadLine();
+                        if (isStudentstring == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationBoolean(isStudentstring));
                     isStudent = bool.Parse(isStudentstring);
@@ -186,6 +251,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi ime: ");
                         desfirstName = Console.ReadLine();
+                        if (desfirstName == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationString(desfirstName) || !validation.ValidationNameOrLastName(desfirstName));
 
@@ -194,6 +264,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi prezime: ");
                         deslastName = Console.ReadLine();
+                        if (deslastName == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationString(deslastName) || !validation.ValidationNameOrLastName(deslastName));
 
@@ -203,6 +278,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi broj godina: ");
                         desAgestring = Console.ReadLine();
+                        if (desAgestring == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationInt(desAgestring));
                     desAge = int.Parse(desAgestring);
@@ -212,6 +292,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi projekt: ");
                         desProject = Console.ReadLine();
+                        if (desProject == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationString(desProject));
 
@@ -221,6 +306,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Zna li crtati? true/false ");
                         descanDrawstring = Console.ReadLine();
+                        if (descanDrawstring == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationBoolean(descanDrawstring));
                     descanDraw = bool.Parse(descanDrawstring);
@@ -242,6 +332,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi ime: ");
                         stfirstName = Console.ReadLine();
+                        if (stfirstName == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationString(stfirstName) || !validation.ValidationNameOrLastName(stfirstName));
 
@@ -250,6 +345,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi prezime: ");
                         stlastName = Console.ReadLine();
+                        if (stlastName == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationString(stlastName) || !validation.ValidationNameOrLastName(stlastName));
 
@@ -259,6 +359,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi broj godina: ");
                         stAgestring = Console.ReadLine();
+                        if (stAgestring == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationInt(stAgestring));
                     stAge = int.Parse(stAgestring);
@@ -268,6 +373,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Unesi projekt: ");
                         stProject = Console.ReadLine();
+                        if (stProject == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationString(stProject));
 
@@ -277,6 +387,11 @@ namespace Employee.Services
                     {
                         Console.WriteLine("Zna li crtati? true/false ");
                         stUsesAutomatedTestsstring = Console.ReadLine();
+                        if (stUsesAutomatedTestsstring == "exit")
+                        {
+                            Console.WriteLine("Prekid unosa!");
+                            return;
+                        }
                     }
                     while(!validation.ValidationBoolean(stUsesAutomatedTestsstring));
                     stUsesAutomatedTests = bool.Parse(stUsesAutomatedTestsstring);
