@@ -46,8 +46,20 @@
     <Compile Include="Common\Employee.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Roles\EmployeeRoles.cs" />
+    <Compile Include="Roles\EmployeeBase.cs" />
+    <Compile Include="Roles\EmployeeCEO.cs" />
+    <Compile Include="Roles\EmployeeDesigner.cs" />
+    <Compile Include="Roles\EmployeeDeveloper.cs" />
+    <Compile Include="Roles\EmployeeProjectManager.cs" />
+    <Compile Include="Roles\EmployeeSoftwareTester.cs" />
+    <Compile Include="Services\EmployeeBaseService.cs" />
+    <Compile Include="Services\EmployeeCEOService.cs" />
     <Compile Include="Services\EmployeeCommands.cs" />
+    <Compile Include="Services\EmployeeDesignerService.cs" />
+    <Compile Include="Services\EmployeeDeveloperService.cs" />
+    <Compile Include="Services\EmployeeProjectManagerService.cs" />
+    <Compile Include="Services\EmployeeSoftwareTesterService.cs" />
+    <Compile Include="Services\IEmployeeBaseService.cs" />
     <Compile Include="Storage\EmployeeStorage.cs" />
     <Compile Include="Validation\Validation.cs" />
   </ItemGroup>
