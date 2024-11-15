@@ -10,7 +10,7 @@ namespace Employee.Storage
 {
     public class EmployeeStorage
     {
-        private List<EmployeeCommon> employeelist = new List<EmployeeCommon>();
+        private List<IEmployeeBase> employeelist = new List<IEmployeeBase>();
         /*{
             new CEO("Matija","Milic",55,10),
             new ProjectManager("Ivan","Zeko",28,"projekt"),
@@ -20,18 +20,18 @@ namespace Employee.Storage
         };*/
 
 
-        public void AddEmployees(EmployeeCommon employee) 
+        private void AddEmployees(IEmployeeBase employee) 
         {
             employeelist.Add(employee);
             
         }
 
-        public void RemoveEmployees(EmployeeCommon employee)
+        private void RemoveEmployees(IEmployeeBase employee)
         {
             employeelist.Remove(employee);
         }
 
-        public IEnumerable<EmployeeCommon> AllEmployees() 
+        private IEnumerable<IEmployeeBase> AllEmployees() 
         {
             return employeelist;
         }

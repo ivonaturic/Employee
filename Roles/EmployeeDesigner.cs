@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Employee.Roles
 {
-    public class Designer : EmployeeCommon
+    public class Designer : EmployeeBase
     {
         public string Project { get; set; }
         public bool CanDraw { get; set; }
@@ -17,6 +17,6 @@ namespace Employee.Roles
             Project = project;
             CanDraw = canDraw;
         }
-        public override string GetInfo() => $"{Id} {FirstName} {LastName} Age = {Age} Project = {Project} CanDraw = {CanDraw}";
+        public override string GetInfo() => $"Id = {Id} {FirstName} {LastName} Age = {Age} Project = {Project} CanDraw = {CanDraw}";
     }
 }

@@ -54,6 +54,28 @@ namespace Employee.Validation
             }
             
         }
+        public static bool ValidationCEOAge(string x)
+        {
+            int broj;
+            if (int.TryParse(x, out broj))
+            {
+                if (broj >= 0 && broj <= 40)
+                {
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("CEO age must be between 0 and 40!");
+                    return false;
+                }
+            }
+            else
+            {
+                Console.WriteLine("The entry must be a number!");
+                return false;
+            }
+
+        }
         public static bool ValidationRole(string x) 
         {
             if (x == "ceo" || x == "projectmanager" || x == "developer" || x == "designer" || x == "softwaretester")

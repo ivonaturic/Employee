@@ -8,9 +8,21 @@ namespace Employee.Common
 {
     public static class EmployeeCommon 
     {
-        public static void Naredbe() 
+        public static void Commands() 
         {
             Console.WriteLine("Possible commands: Help, Add, Remove, Display, List, RoleList");
+        }
+        public static void Roles() 
+        {
+            Console.WriteLine("Uloge: CEO, ProjectManager, Developer, Designer, SoftwareTester");
+        }
+        public static void Exit(string entry) 
+        {
+            if (entry == "exit")
+            {
+                Console.WriteLine("Prekid unosa!");
+                return;
+            }
         }
     }
 }

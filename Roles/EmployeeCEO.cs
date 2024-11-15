@@ -7,7 +7,7 @@ using Employee.Common;
 
 namespace Employee.Roles
 {
-    public class CEO : EmployeeCommon
+    public class CEO : EmployeeBase
     {
         public int CeoYears { get; set; }
 

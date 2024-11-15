@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Employee.Services;
 using Employee.Validation;
+using Employee.Common;
 
 namespace Employee
 {
@@ -15,44 +16,43 @@ namespace Employee
 
         static void Main(string[] args)
         {
-            EmployeeCommands command = new EmployeeCommands();
-            //EmployeeValidation validation = new EmployeeValidation();
+            EmployeeBaseService command = new EmployeeBaseService();
             while (true)
             {
 
-                Console.WriteLine("Possible commands: Help, Add, Remove, Display, List, RoleList");
+                EmployeeCommon.Commands();
                 
                 string opcija = Console.ReadLine();
 
                 switch (opcija.ToLower())
                 {
                     case "dodaj":
-                        Console.WriteLine("Uloga: CEO, ProjectManager, Developer, Designer, SoftwareTester");
+                        EmployeeCommon.Commands();
                         string uloga = Console.ReadLine();
-                        command.AddEmployees(uloga);
+                        //command.AddEmployees(uloga);
                         break;
                     case "ukloni":
-                        Console.WriteLine("Unesite prezime zaposlenika kojeg želite ukloniti: ");
-                        string prezime = Console.ReadLine();
-                        command.RemoveEmployees(prezime);
+                        Console.WriteLine("Unesite id zaposlenika kojeg želite ukloniti: ");
+                        int id = int.Parse(Console.ReadLine());
+                        //command.RemoveEmployees(id);
                         break;
                     case "prikazi":
                         Console.WriteLine("Prikaz svih zaposlenika: ");
-                        command.DisplayAllEmployees();
+                        //command.DisplayAllEmployees();
                         break;
                     case "popis":
                         Console.WriteLine("Prikaz zaposlenika bez CEO: ");
-                        command.DisplayEmployeesWithoutCEO();
+                        //command.DisplayEmployeesWithoutCEO();
                         break;
                     case "uloga":
-                        Console.WriteLine("Uloge: CEO, ProjectManager, Developer, Designer, SoftwareTester");
+                        EmployeeCommon.Roles();
                         Console.WriteLine("Unesi ulogu: ");
                         string role = Console.ReadLine().ToLower();
                         if (EmployeeValidation.ValidationString(role))
                         {
                             if (EmployeeValidation.ValidationRole(role))
                             {
-                                command.ListByRole(role);
+                                //command.ListByRole(role);
                             }
                         }
                         break;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Employee.Roles
 {
-    public class Developer : EmployeeCommon
+    public class Developer : EmployeeBase
     {
         public string Project { get; set; }
         public bool IsStudent { get; set; }

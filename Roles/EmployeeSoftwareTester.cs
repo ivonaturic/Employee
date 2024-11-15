@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Employee.Roles
 {
-    public class SoftwareTester : EmployeeCommon
+    public class SoftwareTester : EmployeeBase
     {
         public string Project { get; set; }
         public bool UseAutomatedTests { get; set; }
@@ -17,7 +17,7 @@ namespace Employee.Roles
             Project = project;
             UseAutomatedTests = useAutomatedTests;
         }
-        public override string GetInfo() => $"{Id} {FirstName} {LastName} Age = {Age} Project = {Project} Use Automated Test = {UseAutomatedTests}";
+        public override string GetInfo() => $"Id = {Id} {FirstName} {LastName} Age = {Age} Project = {Project} Use Automated Test = {UseAutomatedTests}";
 
     }
 }

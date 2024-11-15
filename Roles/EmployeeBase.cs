@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Employee.Roles
 {
-    public abstract class EmployeeCommon
+    public abstract class EmployeeBase : IEmployeeBase
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
 
-        public EmployeeCommon(int id, string firstName, string lastName, int age)
+        public EmployeeBase(int id, string firstName, string lastName, int age)
         {
             Id = id;
             FirstName = firstName;
