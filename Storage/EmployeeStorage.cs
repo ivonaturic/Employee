@@ -8,9 +8,9 @@ using Employee.Roles;
 
 namespace Employee.Storage
 {
-    public class EmployeeStorage
+    public class EmployeeStorage<T> : IStorage<T> 
     {
-        private List<IEmployeeBase> employeelist = new List<IEmployeeBase>();
+        private readonly List<T> employeelist = new List<T>();
         /*{
             new CEO("Matija","Milic",55,10),
             new ProjectManager("Ivan","Zeko",28,"projekt"),
@@ -20,18 +20,17 @@ namespace Employee.Storage
         };*/
 
 
-        private void AddEmployees(IEmployeeBase employee) 
+        public void AddEmployees(T entity) 
         {
-            employeelist.Add(employee);
-            
+            employeelist.Add(entity);   
         }
 
-        private void RemoveEmployees(IEmployeeBase employee)
+        public void RemoveEmployees(T entity)
         {
-            employeelist.Remove(employee);
+            employeelist.Remove(entity);
         }
 
-        private IEnumerable<IEmployeeBase> AllEmployees() 
+        public IEnumerable<T> AllEmployees() 
         {
             return employeelist;
         }

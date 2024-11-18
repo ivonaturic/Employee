@@ -17,7 +17,7 @@ namespace Employee.Roles
             Project = project;
             UseAutomatedTests = useAutomatedTests;
         }
-        public override string GetInfo() => $"Id = {Id} {FirstName} {LastName} Age = {Age} Project = {Project} Use Automated Test = {UseAutomatedTests}";
+        public override string GetInfo() => $"{base.GetInfo()} Project = {Project} Use Automated Test = {UseAutomatedTests}";
 
     }
 }

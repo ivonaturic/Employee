@@ -15,7 +15,7 @@ namespace Employee.Roles
         {
             CeoYears = ceoYears;
         }
-        public override string GetInfo() => $"Id = {Id} {FirstName} {LastName} Age = {Age} CEOAge = {CeoYears}";
+        public override string GetInfo() => $"{base.GetInfo()} CEOAge = {CeoYears}";
 
     }
     /*public class ProjectManager : EmployeeCommon

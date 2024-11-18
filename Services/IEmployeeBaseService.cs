@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Employee.Storage;
 
 namespace Employee.Services
 {
-    /*internal interface IEmployeeBaseService
+    public interface IEmployeeBaseService<T>
     {
-        void AddEmployees(string role);
-        void RemoveEmployees(int id);
-        void DisplayAllEmployees();
-        void DisplayEmployeesWithoutCEO();
-        void ListByRole(string role);
-    }*/
+        void AddEmployeesService(T entity);
+        void RemoveEmployeesService(T entity);
+        IEnumerable<T> DisplayAllEmployees();
+        IEnumerable<T> DisplayEmployeesWithoutCEO();
+        IEnumerable<T> ListByRole(string role);
+    }
 }

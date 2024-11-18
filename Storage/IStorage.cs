@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Employee.Storage
 {
-    internal interface IStorage<T> where T : class
+    public interface IStorage<T>
     {
         void AddEmployees(T entity);
         void RemoveEmployees(T entity);
-        IEnumerable<T> GetAll();
+        IEnumerable<T> AllEmployees();
     }
 }

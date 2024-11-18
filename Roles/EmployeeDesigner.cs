@@ -17,6 +17,6 @@ namespace Employee.Roles
             Project = project;
             CanDraw = canDraw;
         }
-        public override string GetInfo() => $"Id = {Id} {FirstName} {LastName} Age = {Age} Project = {Project} CanDraw = {CanDraw}";
+        public override string GetInfo() => $"{base.GetInfo()} Project = {Project} CanDraw = {CanDraw}";
     }
 }

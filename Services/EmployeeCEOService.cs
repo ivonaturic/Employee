@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Employee.Services
 {
-    internal class EmployeeCEOService
+    public class EmployeeCEOService
     {
+
     }
 }

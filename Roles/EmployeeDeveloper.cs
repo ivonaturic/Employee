@@ -17,6 +17,6 @@ namespace Employee.Roles
             Project = project;
             IsStudent = isStudent;
         }
-        public override string GetInfo() => $"{Id} {FirstName} {LastName} Age = {Age} Project = {Project} IsStudent = {IsStudent}";
+        public override string GetInfo() => $"{base.GetInfo()} Project = {Project} IsStudent = {IsStudent}";
     }
 }
