@@ -1,4 +1,5 @@
 ﻿using Employee.Common;
+using Employee.Roles;
 using Employee.Storage;
 using Employee.Validation;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Employee.Services
 {
-    internal class EmployeeBaseService<T> : IEmployeeBaseService<T>
+    public class EmployeeBaseService<T> : IEmployeeBaseService<T> where T : EmployeeBase
     {
         private readonly IStorage<T> _storage;
 

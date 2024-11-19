@@ -1,25 +1,33 @@
 ﻿using Employee.Roles;
+using Employee.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Employee.Services
 {
     public class Factory
     {
-        public static IEmployeeBaseService SwitchEmployeeRole(string role)
+        /*public static IEmployeeBaseService<T> CreateRoleService<T>(string role) where T : EmployeeBase
         {
-            switch (role) 
+            switch (role.ToLower()) 
             {
-                case "CEO":
-                    return new EmployeeCEOService();
-                case "ProjectManager":
+                case "ceo":
+                   return EmployeeCEOService();
+                case "projectmanager":
                     return new EmployeeProjectManagerService();
+                case "designer":
+                    return new EmployeeDesignerService();
+                case "developer":
+                    return new EmployeeDeveloperService();
+                case "softwaretester":
+                    return new EmployeeSoftwareTesterService();
                 default:
-                    throw new ArgumentException("Invalid product type");
+                    throw new ArgumentException("Invalid role type", nameof(role));
             }
-        }
+        }*/
     }
 }

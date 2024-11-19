@@ -16,7 +16,7 @@ namespace Employee
 
         static void Main(string[] args)
         {
-            EmployeeBaseService command = new EmployeeBaseService();
+            //EmployeeBaseService command = new EmployeeBaseService();
             while (true)
             {
 
