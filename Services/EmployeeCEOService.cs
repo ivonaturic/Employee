@@ -18,11 +18,16 @@ namespace Employee.Services
         }
         public override void AddEmployeesService(CEO entity)
         {
-            base.AddEmployeesService(entity);
-        }
-        public override void RemoveEmployeesService(CEO entity)
-        {
-            base.RemoveEmployeesService(entity);
+            var ceo = _storage.AllEmployees().Where(e => e.GetType().Name == "CEO");
+            if (ceo.Any())
+            {
+                Console.WriteLine("CEO already exists, there can only be one!");
+                return;
+            }
+            else
+            {
+                base.AddEmployeesService(entity);
+            }
         }
     }
 }

@@ -20,44 +20,25 @@ namespace Employee
             while (true)
             {
 
-                EmployeeCommon.Commands();
-                
+                Console.WriteLine($"{Constants.PossibleCommands}");
                 string opcija = Console.ReadLine();
-
                 switch (opcija.ToLower())
                 {
-                    case "dodaj":
-                        EmployeeCommon.Commands();
-                        string uloga = Console.ReadLine();
-                        //command.AddEmployees(uloga);
+                    case Constants.HELP:
                         break;
-                    case "ukloni":
-                        Console.WriteLine("Unesite id zaposlenika kojeg želite ukloniti: ");
-                        int id = int.Parse(Console.ReadLine());
-                        //command.RemoveEmployees(id);
+                    case Constants.ADD:
+                        Console.WriteLine($"{Constants.PossibleRoles}");
                         break;
-                    case "prikazi":
-                        Console.WriteLine("Prikaz svih zaposlenika: ");
-                        //command.DisplayAllEmployees();
+                    case Constants.REMOVE:
                         break;
-                    case "popis":
-                        Console.WriteLine("Prikaz zaposlenika bez CEO: ");
-                        //command.DisplayEmployeesWithoutCEO();
+                    case Constants.DISPLAY:
                         break;
-                    case "uloga":
-                        EmployeeCommon.Roles();
-                        Console.WriteLine("Unesi ulogu: ");
-                        string role = Console.ReadLine().ToLower();
-                        if (EmployeeValidation.ValidationString(role))
-                        {
-                            if (EmployeeValidation.ValidationRole(role))
-                            {
-                                //command.ListByRole(role);
-                            }
-                        }
+                    case Constants.LIST:
+                        break;
+                    case Constants.ROLELIST:
                         break;
                     default:
-                        Console.WriteLine("Nepostojeća naredba!");
+                        Console.WriteLine($"{Constants.NonExistentCommand}");
                         break;
 
                 }

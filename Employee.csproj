@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Employee.cs" />
+    <Compile Include="Common\CommonProperties.cs" />
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\EXIT.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\EmployeeBase.cs" />

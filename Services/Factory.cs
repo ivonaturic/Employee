@@ -11,23 +11,29 @@ namespace Employee.Services
 {
     public class Factory
     {
-        /*public static IEmployeeBaseService<T> CreateRoleService<T>(string role) where T : EmployeeBase
+        public static IEmployeeBaseService<T> CreateRoleService<T>(string role, IStorage<T> storage) where T : EmployeeBase
         {
             switch (role.ToLower()) 
             {
                 case "ceo":
-                   return EmployeeCEOService();
+                   if(typeof(T) == typeof(CEO)) return (IEmployeeBaseService<T>)new EmployeeCEOService(storage as IStorage<CEO>);
+                    break;
                 case "projectmanager":
-                    return new EmployeeProjectManagerService();
+                    if(typeof(T) == typeof(ProjectManager))return (IEmployeeBaseService<T>)new EmployeeProjectManagerService(storage as IStorage<ProjectManager>);
+                    break;
                 case "designer":
-                    return new EmployeeDesignerService();
+                   if(typeof(T) == typeof(Designer)) return (IEmployeeBaseService<T>)new EmployeeDesignerService(storage as IStorage<Designer>);
+                    break;
                 case "developer":
-                    return new EmployeeDeveloperService();
+                    if(typeof(T) == typeof(Developer)) return (IEmployeeBaseService<T>)new EmployeeDeveloperService(storage as IStorage<Developer>);
+                    break;
                 case "softwaretester":
-                    return new EmployeeSoftwareTesterService();
+                    if(typeof(T) == typeof(SoftwareTester))return (IEmployeeBaseService<T>)new EmployeeSoftwareTesterService(storage as IStorage<SoftwareTester>);
+                    break;
                 default:
                     throw new ArgumentException("Invalid role type", nameof(role));
             }
-        }*/
+            throw new InvalidOperationException("Invalid");
+        }
     }
 }
