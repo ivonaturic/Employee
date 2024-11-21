@@ -11,14 +11,6 @@ namespace Employee.Storage
     public class EmployeeStorage<T> : IStorage<T> 
     {
         private readonly List<T> employeelist = new List<T>();
-        /*{
-            new CEO("Matija","Milic",55,10),
-            new ProjectManager("Ivan","Zeko",28,"projekt"),
-            new ProjectManager("Martina","Peric",32,"projekt2"),
-            new Developer("Petar","Perica",44,"project",false),
-            new SoftwareTester("Karla","Kartalic",44,"projekt2",true)
-        };*/
-
 
         public void AddEmployees(T entity) 
         {

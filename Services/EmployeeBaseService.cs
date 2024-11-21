@@ -18,7 +18,7 @@ namespace Employee.Services
         {
             _storage = storage;
         }
-        public virtual void AddEmployeesService(T entity) 
+        public void AddEmployeesService(T entity) 
         {
             var rememp = _storage.AllEmployees().FirstOrDefault(e => e.Id == entity.Id);
             if (rememp != null)
@@ -81,6 +81,7 @@ namespace Employee.Services
                 Console.WriteLine("There are no employees entered for the entered role!");
                 return Enumerable.Empty<T>();
             }
+            Console.WriteLine("List by {role}");
             return listbyrole;
         }
     }

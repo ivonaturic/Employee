@@ -11,29 +11,31 @@ namespace Employee.Services
 {
     public class Factory
     {
-        public static IEmployeeBaseService<T> CreateRoleService<T>(string role, IStorage<T> storage) where T : EmployeeBase
+        public static IEmployeeBaseService<T> CreateRoleService<T>(string role) where T : EmployeeBase
         {
+            IStorage<T> storage;
             switch (role.ToLower()) 
             {
                 case "ceo":
-                   if(typeof(T) == typeof(CEO)) return (IEmployeeBaseService<T>)new EmployeeCEOService(storage as IStorage<CEO>);
-                    break;
+                    storage = new EmployeeStorage<CEO>() as IStorage<T>;
+                    return new EmployeeCEOService(storage as IStorage<CEO>) as IEmployeeBaseService<T>;
                 case "projectmanager":
-                    if(typeof(T) == typeof(ProjectManager))return (IEmployeeBaseService<T>)new EmployeeProjectManagerService(storage as IStorage<ProjectManager>);
-                    break;
+                    storage = new EmployeeStorage<ProjectManager>() as IStorage<T>;
+                    return new EmployeeProjectManagerService(storage as IStorage<ProjectManager>) as IEmployeeBaseService<T>;
                 case "designer":
-                   if(typeof(T) == typeof(Designer)) return (IEmployeeBaseService<T>)new EmployeeDesignerService(storage as IStorage<Designer>);
-                    break;
+                    storage = new EmployeeStorage<Designer>() as IStorage<T>;
+                    return new EmployeeDesignerService(storage as IStorage<Designer>) as IEmployeeBaseService<T>;
                 case "developer":
-                    if(typeof(T) == typeof(Developer)) return (IEmployeeBaseService<T>)new EmployeeDeveloperService(storage as IStorage<Developer>);
-                    break;
+                    storage = new EmployeeStorage<Developer>() as IStorage<T>;
+                    return new EmployeeDeveloperService(storage as IStorage<Developer>) as IEmployeeBaseService<T>;
                 case "softwaretester":
-                    if(typeof(T) == typeof(SoftwareTester))return (IEmployeeBaseService<T>)new EmployeeSoftwareTesterService(storage as IStorage<SoftwareTester>);
-                    break;
+                    storage = new EmployeeStorage<SoftwareTester>() as IStorage<T>;
+                    return new EmployeeSoftwareTesterService(storage as IStorage<SoftwareTester>) as IEmployeeBaseService<T>;
                 default:
                     throw new ArgumentException("Invalid role type", nameof(role));
             }
             throw new InvalidOperationException("Invalid");
         }
+        
     }
 }

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using Employee.Services;
 using Employee.Validation;
 using Employee.Common;
+using Employee.Storage;
+using Employee.Roles;
+using Employee.Constants;
 
 namespace Employee
 {
@@ -16,32 +19,47 @@ namespace Employee
 
         static void Main(string[] args)
         {
-            //EmployeeBaseService command = new EmployeeBaseService();
             while (true)
             {
-
-                Console.WriteLine($"{Constants.PossibleCommands}");
-                string opcija = Console.ReadLine();
-                switch (opcija.ToLower())
+                Console.WriteLine(ConstantsMessages.PossibleCommands);
+                string command = Console.ReadLine();
+                string role;
+                switch (command.ToLower()) 
                 {
-                    case Constants.HELP:
+                    case ConstantsCommands.HELP:
+                        Console.WriteLine(ConstantsHelp.HELP);
                         break;
-                    case Constants.ADD:
-                        Console.WriteLine($"{Constants.PossibleRoles}");
+                    case ConstantsCommands.ADD:
+                        Console.WriteLine(ConstantsMessages.PossibleRoles);
+                        role = Console.ReadLine().ToLower();
+                        var roleservice = Factory.CreateRoleService<EmployeeBase>(role);
+                        
                         break;
-                    case Constants.REMOVE:
+                    case ConstantsCommands.REMOVE:
+                        Console.WriteLine(ConstantsMessages.PossibleRoles);
                         break;
-                    case Constants.DISPLAY:
+                    case ConstantsCommands.DISPLAY:
                         break;
-                    case Constants.LIST:
+                    case ConstantsCommands.LIST:
+                        Console.WriteLine(ConstantsMessages.ListWithoutCEO);
                         break;
-                    case Constants.ROLELIST:
+                    case ConstantsCommands.ROLELIST:
+                        Console.WriteLine(ConstantsMessages.PossibleRoles);
+                        string role1 = Console.ReadLine().ToLower();
+                        var rolelist = Factory.CreateRoleService<EmployeeBase>(role1);
+                        if (rolelist != null)
+                        {
+                            rolelist.ListByRole(role1);
+                        }
                         break;
                     default:
-                        Console.WriteLine($"{Constants.NonExistentCommand}");
+                        Console.WriteLine(ConstantsMessages.NonExistentCommand);
                         break;
-
                 }
+
+                
+
+                
                 Console.ReadKey();
             }
         }
