@@ -17,32 +17,20 @@ namespace Employee.Services
         {
             _storage = storage;
         }
-        public void AddEmployeesDeveloperService() 
+        public virtual void AddEmployeesService() 
         {
 
-            Console.WriteLine("Unesi id: ");
-            string devIdString= Console.ReadLine();
-            int devIdInt = int.Parse(devIdString);
-
-            Console.WriteLine("Unesi ime: ");
-            string devfirstName = Console.ReadLine();
             
-            Console.WriteLine("Unesi prezime: ");
-            string devlastName = Console.ReadLine();
-            
-            Console.WriteLine("Unesi broj godina: ");
-            string devAgestring = Console.ReadLine();
-            int devAge = int.Parse(devAgestring);
 
-            Console.WriteLine("Unesi projekt: ");
+            Console.WriteLine("Enter project: ");
             string devProject = Console.ReadLine();
            
-            Console.WriteLine("Je li student? true/false ");
+            Console.WriteLine("Is student? true/false ");
             string isStudentstring = Console.ReadLine();
             bool isStudent = bool.Parse(isStudentstring);
 
-            var developer = new Developer(devIdInt, devfirstName, devlastName, devAge, devProject, isStudent);
-            base.AddEmployeesService(developer);
+            //var developer = new Developer(devIdInt, devfirstName, devlastName, devAge, devProject, isStudent);
+            //base.AddEmployeesService(developer);
 
             
 

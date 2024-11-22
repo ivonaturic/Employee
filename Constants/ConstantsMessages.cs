@@ -12,6 +12,9 @@ namespace Employee.Constants
         public const string PossibleRoles = "Possible roles: CEO, ProjectManager, Developer, Designer, SoftwareTester";
 
         public const string NonExistentCommand = "Non-existent command!";
-        public const string ListWithoutCEO = "List without CEO!";
+        public const string ListAllEmployees = "List of all employees: ";
+        public const string ListWithoutCEO = "List without CEO: ";
+
+        public const string InputId = "Input ID: ";
     }
 }

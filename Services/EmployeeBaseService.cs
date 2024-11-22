@@ -12,35 +12,53 @@ namespace Employee.Services
 {
     public class EmployeeBaseService<T> : IEmployeeBaseService<T> where T : EmployeeBase
     {
+        protected int baseIdInt;
+        protected string basefirstName;
+        protected string baselastName;
+        protected int baseAgeInt;
+
         private readonly IStorage<T> _storage;
 
         public EmployeeBaseService(IStorage<T> storage)
         {
             _storage = storage;
         }
-        public void AddEmployeesService(T entity) 
+        public virtual void AddEmployeesService() 
         {
-            var rememp = _storage.AllEmployees().FirstOrDefault(e => e.Id == entity.Id);
+            Console.WriteLine("New entry: ");
+            Console.WriteLine("Id: ");
+            string baseIdString = Console.ReadLine();
+            baseIdInt = int.Parse(baseIdString);
+            Console.WriteLine("First name: ");
+            basefirstName = Console.ReadLine();
+            Console.WriteLine("Last name: ");
+            baselastName = Console.ReadLine();
+            Console.WriteLine("Age: ");
+            string baseAgeString = Console.ReadLine();
+            baseAgeInt = int.Parse(baseAgeString);
+
+            var rememp = _storage.AllEmployees().FirstOrDefault(e => e.Id == baseIdInt);
             if (rememp != null)
             {
-                Console.WriteLine("Employee already exists!");
+                Console.WriteLine("Employee with that ID already exists!");
                 return;
             }
+
             try
             {
-                _storage.AddEmployees(entity);
+                
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while adding {ex.Message}");
             }
         }
-        public void RemoveEmployeesService(T entity) 
+        public void RemoveEmployeesService(int id) 
         {
-            var rememp = _storage.AllEmployees().SingleOrDefault(e => e.Id == entity.Id);
+            var rememp = _storage.AllEmployees().SingleOrDefault(e => e.Id == id);
             if (rememp == null)
             {
-                Console.WriteLine("Non-existent employee");
+                Console.WriteLine("The employee does not exist.");
                 return;
             }
             try
@@ -78,7 +96,7 @@ namespace Employee.Services
             var listbyrole = _storage.AllEmployees().Where(e => e.GetType().Name.Equals(role, StringComparison.OrdinalIgnoreCase));
             if (!listbyrole.Any())
             {
-                Console.WriteLine("There are no employees entered for the entered role!");
+                Console.WriteLine($"There are no employees entered for the {role} role!");
                 return Enumerable.Empty<T>();
             }
             Console.WriteLine("List by {role}");

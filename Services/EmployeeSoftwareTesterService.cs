@@ -18,31 +18,19 @@ namespace Employee.Services
             _storage = storage;
         }
 
-        public void AddEmployeesSoftwareTester() 
+        public virtual void AddEmployeesService() 
         {
-            Console.WriteLine("Unesi id: ");
-            string stIdString = Console.ReadLine();
-            int stIdInt = int.Parse(stIdString);
+           
 
-            Console.WriteLine("Unesi ime: ");
-            string stfirstName = Console.ReadLine();
-
-            Console.WriteLine("Unesi prezime: ");
-            string stlastName = Console.ReadLine();
-             
-            Console.WriteLine("Unesi broj godina: ");
-            string stAgestring = Console.ReadLine();
-            int stAge = int.Parse(stAgestring);
-
-            Console.WriteLine("Unesi projekt: ");
+            Console.WriteLine("Enter project: ");
             string stProject = Console.ReadLine();
               
-            Console.WriteLine("Zna li crtati? true/false ");
+            Console.WriteLine("Uses automated tests? true/false ");
             string stUsesAutomatedTestsstring = Console.ReadLine();
             bool stUsesAutomatedTests = bool.Parse(stUsesAutomatedTestsstring);
              
-            var softwaretester = new SoftwareTester(stIdInt, stfirstName, stlastName, stAge, stProject, stUsesAutomatedTests);
-            base.AddEmployeesService(softwaretester);
+            //var softwaretester = new SoftwareTester(stIdInt, stfirstName, stlastName, stAge, stProject, stUsesAutomatedTests);
+            //base.AddEmployeesService(softwaretester);
             
         }
         

@@ -19,11 +19,12 @@ namespace Employee
 
         static void Main(string[] args)
         {
+            IStorage<EmployeeBase> storage = new EmployeeStorage<EmployeeBase>();
+            EmployeeBaseService<EmployeeBase> employeeservice = new EmployeeBaseService<EmployeeBase>(storage);
             while (true)
             {
                 Console.WriteLine(ConstantsMessages.PossibleCommands);
                 string command = Console.ReadLine();
-                string role;
                 switch (command.ToLower()) 
                 {
                     case ConstantsCommands.HELP:
@@ -31,26 +32,26 @@ namespace Employee
                         break;
                     case ConstantsCommands.ADD:
                         Console.WriteLine(ConstantsMessages.PossibleRoles);
-                        role = Console.ReadLine().ToLower();
-                        var roleservice = Factory.CreateRoleService<EmployeeBase>(role);
-                        
+                        string roleforinput = Console.ReadLine().ToLower();
+                        var roleservice = Factory.CreateRoleService<EmployeeBase>(roleforinput,storage);
                         break;
                     case ConstantsCommands.REMOVE:
-                        Console.WriteLine(ConstantsMessages.PossibleRoles);
+                       Console.WriteLine(ConstantsMessages.InputId);
+                        int id = int.Parse(Console.ReadLine());
+                        employeeservice.RemoveEmployeesService(id);
                         break;
                     case ConstantsCommands.DISPLAY:
+                        Console.WriteLine(ConstantsMessages.ListAllEmployees);
+                        employeeservice.DisplayAllEmployees();
                         break;
                     case ConstantsCommands.LIST:
                         Console.WriteLine(ConstantsMessages.ListWithoutCEO);
+                        employeeservice.DisplayEmployeesWithoutCEO();
                         break;
                     case ConstantsCommands.ROLELIST:
                         Console.WriteLine(ConstantsMessages.PossibleRoles);
-                        string role1 = Console.ReadLine().ToLower();
-                        var rolelist = Factory.CreateRoleService<EmployeeBase>(role1);
-                        if (rolelist != null)
-                        {
-                            rolelist.ListByRole(role1);
-                        }
+                        string roleforoutput = Console.ReadLine().ToLower();
+                        employeeservice.ListByRole(roleforoutput);
                         break;
                     default:
                         Console.WriteLine(ConstantsMessages.NonExistentCommand);

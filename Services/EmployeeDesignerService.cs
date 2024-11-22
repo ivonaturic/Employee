@@ -17,31 +17,19 @@ namespace Employee.Services
         {
             _storage = storage;
         }
-        public void AddEmployeesDesignerService() 
+        public virtual void AddEmployeesService() 
         {
-            Console.WriteLine("Unesi Id");
-            string desStringId = Console.ReadLine();
-            int desIntId = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Unesi ime: ");
-            string desfirstName = Console.ReadLine();
             
-            Console.WriteLine("Unesi prezime: ");
-            string deslastName = Console.ReadLine();
-            
-            Console.WriteLine("Unesi broj godina: ");
-            string desAgestring = Console.ReadLine();
-            int desAge = int.Parse(desAgestring);
 
-            Console.WriteLine("Unesi projekt: ");
+            Console.WriteLine("Enter project: ");
             string desProject = Console.ReadLine();
             
-            Console.WriteLine("Zna li crtati? true/false ");
+            Console.WriteLine("Can draw? true/false ");
             string descanDrawstring = Console.ReadLine();   
             bool descanDraw = bool.Parse(descanDrawstring);
 
-            var designer = new Designer(desIntId, desfirstName, deslastName, desAge, desProject, descanDraw);
-            base.AddEmployeesService(designer);
+            
+            
         }
     }
 }
