@@ -11,11 +11,13 @@ namespace Employee.Services
 {
     internal class EmployeeSoftwareTesterService : EmployeeBaseService<SoftwareTester>
     {
+        protected SoftwareTester softwaretester;
         private readonly IStorage<SoftwareTester> _storage;
 
-        public EmployeeSoftwareTesterService(IStorage<SoftwareTester> storage) : base(storage)
+        public EmployeeSoftwareTesterService(SoftwareTester sOFTWARETESTER) : base(sOFTWARETESTER)
         {
-            _storage = storage;
+            softwaretester = sOFTWARETESTER;
+            _storage = new EmployeeStorage<SoftwareTester>();
         }
 
         public virtual void AddEmployeesService() 

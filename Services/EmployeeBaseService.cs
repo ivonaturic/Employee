@@ -5,12 +5,13 @@ using Employee.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Employee.Services
 {
-    public class EmployeeBaseService<T> : IEmployeeBaseService<T> where T : EmployeeBase
+    public class EmployeeBaseService<T> : IEmployeeBaseService<T> where T : IEmployeeBase
     {
         protected int baseIdInt;
         protected string basefirstName;
@@ -18,11 +19,13 @@ namespace Employee.Services
         protected int baseAgeInt;
 
         private readonly IStorage<T> _storage;
+        protected T _employee;
 
-        public EmployeeBaseService(IStorage<T> storage)
-        {
-            _storage = storage;
+        public EmployeeBaseService(T employee)
+        { 
+            _employee = employee;
         }
+        
         public virtual void AddEmployeesService() 
         {
             Console.WriteLine("New entry: ");
@@ -35,7 +38,7 @@ namespace Employee.Services
             baselastName = Console.ReadLine();
             Console.WriteLine("Age: ");
             string baseAgeString = Console.ReadLine();
-            baseAgeInt = int.Parse(baseAgeString);
+            int baseAgeInt = int.Parse(baseAgeString);
 
             var rememp = _storage.AllEmployees().FirstOrDefault(e => e.Id == baseIdInt);
             if (rememp != null)

@@ -8,7 +8,7 @@ using Employee.Roles;
 
 namespace Employee.Storage
 {
-    public class EmployeeStorage<T> : IStorage<T> 
+    public class EmployeeStorage<T> : IStorage<T> where T : IEmployeeBase
     {
         private readonly List<T> employeelist = new List<T>();
 

@@ -11,6 +11,7 @@ using Employee.Common;
 using Employee.Storage;
 using Employee.Roles;
 using Employee.Constants;
+using System.Data;
 
 namespace Employee
 {
@@ -33,7 +34,8 @@ namespace Employee
                     case ConstantsCommands.ADD:
                         Console.WriteLine(ConstantsMessages.PossibleRoles);
                         string roleforinput = Console.ReadLine().ToLower();
-                        var roleservice = Factory.CreateRoleService<EmployeeBase>(roleforinput,storage);
+                        //var roleservice = Factory.CreateRoleService<EmployeeBase>(roleforinput);
+                        IEmployeeBaseService<EmployeeBase> employeeService = Factory.CreateRoleService(roleforinput);
                         break;
                     case ConstantsCommands.REMOVE:
                        Console.WriteLine(ConstantsMessages.InputId);

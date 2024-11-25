@@ -11,11 +11,13 @@ namespace Employee.Services
     public class EmployeeCEOService : EmployeeBaseService<CEO>
     {
         protected int YearsAsCEO { get; set; }
+        protected CEO ceo;
         private readonly IStorage<CEO> _storage;
 
-        public EmployeeCEOService(IStorage<CEO> storage) : base(storage) 
+        public EmployeeCEOService(CEO cEO) : base(cEO) 
         {
-            _storage = storage;
+            ceo = cEO;
+            _storage = new EmployeeStorage<CEO>();
         }
         public override void AddEmployeesService() 
         {

@@ -11,25 +11,26 @@ namespace Employee.Services
 {
     public class Factory
     {
-        public static IEmployeeBaseService<T> CreateRoleService<T>(string role,IStorage<T> storage) where T : EmployeeBase
+        public static IEmployeeBaseService<EmployeeBase> CreateRoleService(string role)
         {
 
-            switch (role.ToLower()) 
+            /*switch (role.ToLower()) 
             {
                 case "ceo":
-                    return new EmployeeCEOService((IStorage<CEO>) storage) as IEmployeeBaseService<T>;
+                    return new EmployeeCEOService(new CEO());
                 case "projectmanager":
-                    return new EmployeeProjectManagerService((IStorage<ProjectManager>)storage) as IEmployeeBaseService<T>;
+                    return new EmployeeProjectManagerService(new ProjectManager());
                 case "designer":
-                    return new EmployeeDesignerService((IStorage<Designer>)storage) as IEmployeeBaseService<T>;
+                    return new EmployeeDesignerService(new Designer());
                 case "developer":
-                    return new EmployeeDeveloperService((IStorage<Developer>)storage) as IEmployeeBaseService<T>;
+                    return new EmployeeDeveloperService(new Developer());
                 case "softwaretester":
-                    return new EmployeeSoftwareTesterService((IStorage<SoftwareTester>)storage) as IEmployeeBaseService<T>;
+                    return new EmployeeSoftwareTesterService(new SoftwareTester());
                 default:
                     throw new ArgumentException("Invalid role type", nameof(role));
             }
-            throw new InvalidOperationException("Invalid opeation!");
+            throw new InvalidOperationException("Invalid opeation!");*/
+            return null;
         }
         
     }

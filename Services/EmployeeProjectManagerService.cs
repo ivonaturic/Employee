@@ -11,11 +11,13 @@ namespace Employee.Services
 {
     internal class EmployeeProjectManagerService : EmployeeBaseService<ProjectManager>
     {
+        protected ProjectManager projectmanager;
         private readonly IStorage<ProjectManager> _storage;
 
-        public EmployeeProjectManagerService(IStorage<ProjectManager> storage) : base(storage)
+        public EmployeeProjectManagerService(ProjectManager pROJECTMANAGER) : base(pROJECTMANAGER)
         {
-            _storage = storage;
+            projectmanager = pROJECTMANAGER;
+            _storage = new EmployeeStorage<ProjectManager>();
         }
         public virtual void AddEmployeesService() 
         {

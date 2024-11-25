@@ -11,11 +11,13 @@ namespace Employee.Services
 {
     internal class EmployeeDeveloperService : EmployeeBaseService<Developer>
     {
+        protected Developer developer;
         private readonly IStorage<Developer> _storage;
 
-        public EmployeeDeveloperService(IStorage<Developer> storage) : base(storage)
+        public EmployeeDeveloperService(Developer dEVELOPER) : base(dEVELOPER)
         {
-            _storage = storage;
+            developer = dEVELOPER;
+            _storage = new EmployeeStorage<Developer>();
         }
         public virtual void AddEmployeesService() 
         {
