@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace Employee.Services
 {
-    public class EmployeeBaseService<T> : IEmployeeBaseService<T> where T : IEmployeeBase
+    public class EmployeeBaseService<T> : IEmployeeBaseService where T : IEmployeeBase
     {
         protected int baseIdInt;
         protected string basefirstName;
         protected string baselastName;
         protected int baseAgeInt;
 
-        private readonly IStorage<T> _storage;
+        private readonly IStorage<T> _storage = new EmployeeStorage<T>();
         protected T _employee;
 
         public EmployeeBaseService(T employee)
@@ -49,7 +49,9 @@ namespace Employee.Services
 
             try
             {
-                
+                //var newEmployee = (T)Activator.CreateInstance(typeof(T), baseIdInt, basefirstName, baselastName, baseAgeInt);
+                //_storage.AddEmployees(newEmployee);
+                // _storage = new EmployeeStorage<T>(baseIdInt,basefirstName,baselastName,baseAgeInt);
             }
             catch (Exception ex)
             {
@@ -74,36 +76,36 @@ namespace Employee.Services
             }
             
         }
-        public IEnumerable<T> DisplayAllEmployees() 
+        public IEnumerable<IEmployeeBase> DisplayAllEmployees() 
         {
             var allemployees = _storage.AllEmployees();
             if (!allemployees.Any())
             {
                 Console.WriteLine("No employees entered!");
-                return Enumerable.Empty<T>();
+                return Enumerable.Empty<IEmployeeBase>();
             }
-            return allemployees;
+            return allemployees.Cast<IEmployeeBase>();
         }
-        public IEnumerable<T> DisplayEmployeesWithoutCEO() 
+        public IEnumerable<IEmployeeBase> DisplayEmployeesWithoutCEO() 
         {
             var employeeswithoutceo = _storage.AllEmployees().Where(e => e.GetType().Name != "CEO");
             if (!employeeswithoutceo.Any())
             {
                 Console.WriteLine("No employees entered!");
-                return Enumerable.Empty<T>();
+                return Enumerable.Empty<IEmployeeBase>();
             }
-            return employeeswithoutceo;
+            return employeeswithoutceo.Cast<IEmployeeBase>();
         }
-        public IEnumerable<T> ListByRole(string role) 
+        public IEnumerable<IEmployeeBase> ListByRole(string role) 
         {
             var listbyrole = _storage.AllEmployees().Where(e => e.GetType().Name.Equals(role, StringComparison.OrdinalIgnoreCase));
             if (!listbyrole.Any())
             {
                 Console.WriteLine($"There are no employees entered for the {role} role!");
-                return Enumerable.Empty<T>();
+                return Enumerable.Empty<IEmployeeBase>();
             }
             Console.WriteLine("List by {role}");
-            return listbyrole;
+            return listbyrole.Cast<IEmployeeBase>();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Employee.Services
         public EmployeeProjectManagerService(ProjectManager pROJECTMANAGER) : base(pROJECTMANAGER)
         {
             projectmanager = pROJECTMANAGER;
-            _storage = new EmployeeStorage<ProjectManager>();
+            //_storage = new EmployeeStorage<ProjectManager>();
         }
         public virtual void AddEmployeesService() 
         {

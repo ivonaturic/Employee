@@ -8,12 +8,12 @@ using Employee.Storage;
 
 namespace Employee.Services
 {
-    public interface IEmployeeBaseService<T> where T : EmployeeBase
+    public interface IEmployeeBaseService
     {
         void AddEmployeesService();
         void RemoveEmployeesService(int id);
-        IEnumerable<T> DisplayAllEmployees();
-        IEnumerable<T> DisplayEmployeesWithoutCEO();
-        IEnumerable<T> ListByRole(string role);
+        IEnumerable<IEmployeeBase> DisplayAllEmployees();
+        IEnumerable<IEmployeeBase> DisplayEmployeesWithoutCEO();
+        IEnumerable<IEmployeeBase> ListByRole(string role);
     }
 }

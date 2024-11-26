@@ -24,7 +24,7 @@ namespace Employee.Storage
 
         public IEnumerable<T> AllEmployees() 
         {
-            return employeelist;
+            return employeelist.ToList();
         }
     }
 }

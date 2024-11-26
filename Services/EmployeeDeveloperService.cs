@@ -17,7 +17,7 @@ namespace Employee.Services
         public EmployeeDeveloperService(Developer dEVELOPER) : base(dEVELOPER)
         {
             developer = dEVELOPER;
-            _storage = new EmployeeStorage<Developer>();
+           // _storage = new EmployeeStorage<Developer>();
         }
         public virtual void AddEmployeesService() 
         {

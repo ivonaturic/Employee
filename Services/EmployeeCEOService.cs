@@ -12,12 +12,11 @@ namespace Employee.Services
     {
         protected int YearsAsCEO { get; set; }
         protected CEO ceo;
-        private readonly IStorage<CEO> _storage;
+        private readonly IStorage<CEO> _storage = new EmployeeStorage<CEO>();
 
         public EmployeeCEOService(CEO cEO) : base(cEO) 
         {
-            ceo = cEO;
-            _storage = new EmployeeStorage<CEO>();
+            ceo = cEO; 
         }
         public override void AddEmployeesService() 
         {
@@ -25,8 +24,8 @@ namespace Employee.Services
             Console.WriteLine("Years of CEO: ");
             string ceoYearsstring = Console.ReadLine();
             int ceoYears = int.Parse(ceoYearsstring);
-            var ceo = _storage.AllEmployees().Where(e => e.GetType().Name == "CEO");
-            if (ceo.Any())
+            var ceo =  _storage.AllEmployees().OfType<CEO>().FirstOrDefault();
+            if (ceo!=null)
             {
                 Console.WriteLine("CEO already exists, there can only be one!");
                 return;
@@ -34,7 +33,8 @@ namespace Employee.Services
 
             try
             {
-                _storage.AddEmployees(new CEO(baseIdInt,basefirstName,baselastName,baseAgeInt,ceoYears));
+                var newCeo = new CEO(baseIdInt, basefirstName, baselastName, baseAgeInt, ceoYears);
+                _storage.AddEmployees(newCeo);
                 Console.WriteLine("CEO added successfully!");
             }
             catch (Exception ex) 

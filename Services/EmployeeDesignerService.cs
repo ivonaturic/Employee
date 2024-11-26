@@ -17,7 +17,7 @@ namespace Employee.Services
         public EmployeeDesignerService(Designer dESIGNER) : base(dESIGNER) 
         {
             designer = dESIGNER;
-            _storage = new EmployeeStorage<Designer>();
+            //_storage = new EmployeeStorage<Designer>();
         }
         public virtual void AddEmployeesService() 
         {

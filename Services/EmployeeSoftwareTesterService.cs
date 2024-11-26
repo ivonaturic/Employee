@@ -17,7 +17,7 @@ namespace Employee.Services
         public EmployeeSoftwareTesterService(SoftwareTester sOFTWARETESTER) : base(sOFTWARETESTER)
         {
             softwaretester = sOFTWARETESTER;
-            _storage = new EmployeeStorage<SoftwareTester>();
+            //_storage = new EmployeeStorage<SoftwareTester>();
         }
 
         public virtual void AddEmployeesService() 
