@@ -18,7 +18,7 @@ namespace Employee.Services
         protected string baselastName;
         protected int baseAgeInt;
 
-        private readonly IStorage<T> _storage = new EmployeeStorage<T>();
+        public IStorage<IEmployeeBase> _storage = new EmployeeStorage<IEmployeeBase>();
         protected T _employee;
 
         public EmployeeBaseService(T employee)
@@ -38,7 +38,7 @@ namespace Employee.Services
             baselastName = Console.ReadLine();
             Console.WriteLine("Age: ");
             string baseAgeString = Console.ReadLine();
-            int baseAgeInt = int.Parse(baseAgeString);
+            baseAgeInt = int.Parse(baseAgeString);
 
             var rememp = _storage.AllEmployees().FirstOrDefault(e => e.Id == baseIdInt);
             if (rememp != null)
@@ -49,9 +49,14 @@ namespace Employee.Services
 
             try
             {
-                //var newEmployee = (T)Activator.CreateInstance(typeof(T), baseIdInt, basefirstName, baselastName, baseAgeInt);
-                //_storage.AddEmployees(newEmployee);
-                // _storage = new EmployeeStorage<T>(baseIdInt,basefirstName,baselastName,baseAgeInt);
+                /*if (_employee is CEO) 
+                {
+                    var newEmployee = new CEO(baseIdInt, basefirstName, baselastName, baseAgeInt);
+                    _storage.AddEmployees(newEmployee);
+                }
+                //var newEmployee = new (baseIdInt, basefirstName, baselastName, baseAgeInt);
+                //_storage.AddEmployees(newEmployee);*/
+
             }
             catch (Exception ex)
             {
@@ -84,7 +89,7 @@ namespace Employee.Services
                 Console.WriteLine("No employees entered!");
                 return Enumerable.Empty<IEmployeeBase>();
             }
-            return allemployees.Cast<IEmployeeBase>();
+            return allemployees;
         }
         public IEnumerable<IEmployeeBase> DisplayEmployeesWithoutCEO() 
         {
@@ -94,7 +99,7 @@ namespace Employee.Services
                 Console.WriteLine("No employees entered!");
                 return Enumerable.Empty<IEmployeeBase>();
             }
-            return employeeswithoutceo.Cast<IEmployeeBase>();
+            return employeeswithoutceo;
         }
         public IEnumerable<IEmployeeBase> ListByRole(string role) 
         {
@@ -105,7 +110,7 @@ namespace Employee.Services
                 return Enumerable.Empty<IEmployeeBase>();
             }
             Console.WriteLine("List by {role}");
-            return listbyrole.Cast<IEmployeeBase>();
+            return listbyrole;
         }
     }
 }

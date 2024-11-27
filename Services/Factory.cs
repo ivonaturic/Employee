@@ -17,15 +17,15 @@ namespace Employee.Services
             switch (role.ToLower()) 
             {
                 case "ceo":
-                    return new EmployeeCEOService(new CEO(0, "Default", "Name", 0, 0));
-                /*case "projectmanager":
-                    return new EmployeeProjectManagerService(new ProjectManager());
+                    return new EmployeeCEOService(new CEO(0, "", "", 0, 0));
+                case "projectmanager":
+                    return new EmployeeProjectManagerService(new ProjectManager(1,"","",0,""));
                 case "designer":
-                    return new EmployeeDesignerService(new Designer());
+                    return new EmployeeDesignerService(new Designer(2,"","",0,"",true));
                 case "developer":
-                    return new EmployeeDeveloperService(new Developer());
+                    return new EmployeeDeveloperService(null);
                 case "softwaretester":
-                    return new EmployeeSoftwareTesterService(new SoftwareTester());*/
+                    return new EmployeeSoftwareTesterService(null);
                 default:
                     throw new ArgumentException("Invalid role type", nameof(role));
             }

@@ -12,26 +12,38 @@ namespace Employee.Services
     internal class EmployeeDesignerService : EmployeeBaseService<Designer>
     {
         protected Designer designer;
-        private readonly IStorage<Designer> _storage;
+        private readonly IStorage<Designer> _storagE = new EmployeeStorage<Designer>();
 
-        public EmployeeDesignerService(Designer dESIGNER) : base(dESIGNER) 
+        public EmployeeDesignerService(Designer dESIGNER) : base(dESIGNER)
         {
             designer = dESIGNER;
-            //_storage = new EmployeeStorage<Designer>();
         }
-        public virtual void AddEmployeesService() 
+        public override void AddEmployeesService() 
         {
-            
 
+            base.AddEmployeesService();
             Console.WriteLine("Enter project: ");
-            string desProject = Console.ReadLine();
+            designer.Project = Console.ReadLine();
             
             Console.WriteLine("Can draw? true/false ");
             string descanDrawstring = Console.ReadLine();   
-            bool descanDraw = bool.Parse(descanDrawstring);
+            designer.CanDraw = bool.Parse(descanDrawstring);
 
-            
-            
+            try
+            {
+          
+              
+                _storagE.AddEmployees(designer);
+
+                //var newDesigner = new Designer(baseIdInt, basefirstName, baselastName, baseAgeInt, desProject, descanDraw);
+
+                Console.WriteLine("Designer added successfully!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while adding CEO: {ex.Message}");
+            }
+
         }
     }
 }

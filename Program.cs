@@ -21,7 +21,11 @@ namespace Employee
         static void Main(string[] args)
         {
             //IStorage<IEmployeeBase> storage = new EmployeeStorage<IEmployeeBase>();
+            //var iemployeebase = new IEmployeeBase(1,"ivona","turic",25);
             //EmployeeBaseService<IEmployeeBase> employeeservice = new EmployeeBaseService<IEmployeeBase>(storage);
+            
+            IEmployeeBaseService employeeservice = new EmployeeBaseService<IEmployeeBase>(null);
+
             while (true)
             {
                 Console.WriteLine(ConstantsMessages.PossibleCommands);
@@ -34,27 +38,26 @@ namespace Employee
                     case ConstantsCommands.ADD:
                         Console.WriteLine(ConstantsMessages.PossibleRoles);
                         string roleforinput = Console.ReadLine().ToLower();
-                        //var roleservice = Factory.CreateRoleService<EmployeeBase>(roleforinput);
                         IEmployeeBaseService employeeService = Factory.CreateRoleService(roleforinput);
                         employeeService.AddEmployeesService();
                         break;
                     case ConstantsCommands.REMOVE:
                        Console.WriteLine(ConstantsMessages.InputId);
                         int id = int.Parse(Console.ReadLine());
-                        //employeeservice.RemoveEmployeesService(id);
+                        employeeservice.RemoveEmployeesService(id);
                         break;
                     case ConstantsCommands.DISPLAY:
                         Console.WriteLine(ConstantsMessages.ListAllEmployees);
-                        //employeeservice.DisplayAllEmployees();
+                        employeeservice.DisplayAllEmployees();
                         break;
                     case ConstantsCommands.LIST:
                         Console.WriteLine(ConstantsMessages.ListWithoutCEO);
-                        //employeeservice.DisplayEmployeesWithoutCEO();
+                        employeeservice.DisplayEmployeesWithoutCEO();
                         break;
                     case ConstantsCommands.ROLELIST:
                         Console.WriteLine(ConstantsMessages.PossibleRoles);
                         string roleforoutput = Console.ReadLine().ToLower();
-                        //employeeservice.ListByRole(roleforoutput);
+                        employeeservice.ListByRole(roleforoutput);
                         break;
                     default:
                         Console.WriteLine(ConstantsMessages.NonExistentCommand);
