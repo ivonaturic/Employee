@@ -12,11 +12,6 @@ namespace Employee.Roles
         public string Project { get; set; }
         public bool IsStudent { get; set; }
 
-        public Developer(int id, string firstName, string lastName, int age, string project, bool isStudent) : base(id, firstName, lastName, age)
-        {
-            Project = project;
-            IsStudent = isStudent;
-        }
         public override string GetInfo() => $"{base.GetInfo()} Project = {Project} IsStudent = {IsStudent}";
     }
 }

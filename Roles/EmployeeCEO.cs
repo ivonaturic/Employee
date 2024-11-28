@@ -11,10 +11,7 @@ namespace Employee.Roles
     {
         public int CeoYears { get; set; }
 
-        public CEO(int id, string firstName, string lastName, int age, int ceoYears) : base(id, firstName, lastName, age)
-        {
-            CeoYears = ceoYears;
-        }
+        
         public override string GetInfo() => $"{base.GetInfo()} CEOAge = {CeoYears}";
 
     }

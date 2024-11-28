@@ -18,7 +18,6 @@ namespace Employee.Services
         protected string baselastName;
         protected int baseAgeInt;
 
-        public IStorage<IEmployeeBase> _storage = new EmployeeStorage<IEmployeeBase>();
         protected T _employee;
 
         public EmployeeBaseService(T employee)
@@ -32,6 +31,11 @@ namespace Employee.Services
             Console.WriteLine("Id: ");
             string baseIdString = Console.ReadLine();
             baseIdInt = int.Parse(baseIdString);
+            var rememp = EmployeeStorage.AllEmployees().FirstOrDefault(e => e.Id == baseIdInt);
+            if (rememp != null)
+            {
+                Console.WriteLine("Employee with that ID already exists!");
+            }
             Console.WriteLine("First name: ");
             basefirstName = Console.ReadLine();
             Console.WriteLine("Last name: ");
@@ -39,33 +43,10 @@ namespace Employee.Services
             Console.WriteLine("Age: ");
             string baseAgeString = Console.ReadLine();
             baseAgeInt = int.Parse(baseAgeString);
-
-            var rememp = _storage.AllEmployees().FirstOrDefault(e => e.Id == baseIdInt);
-            if (rememp != null)
-            {
-                Console.WriteLine("Employee with that ID already exists!");
-                return;
-            }
-
-            try
-            {
-                /*if (_employee is CEO) 
-                {
-                    var newEmployee = new CEO(baseIdInt, basefirstName, baselastName, baseAgeInt);
-                    _storage.AddEmployees(newEmployee);
-                }
-                //var newEmployee = new (baseIdInt, basefirstName, baselastName, baseAgeInt);
-                //_storage.AddEmployees(newEmployee);*/
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while adding {ex.Message}");
-            }
         }
         public void RemoveEmployeesService(int id) 
         {
-            var rememp = _storage.AllEmployees().SingleOrDefault(e => e.Id == id);
+            var rememp = EmployeeStorage.AllEmployees().SingleOrDefault(e => e.Id == id);
             if (rememp == null)
             {
                 Console.WriteLine("The employee does not exist.");
@@ -73,7 +54,7 @@ namespace Employee.Services
             }
             try
             {
-                _storage.RemoveEmployees(rememp);
+                EmployeeStorage.RemoveEmployees(rememp);
             }
             catch (Exception ex)
             {
@@ -81,36 +62,54 @@ namespace Employee.Services
             }
             
         }
-        public IEnumerable<IEmployeeBase> DisplayAllEmployees() 
+        public virtual void DisplayAllEmployees() 
         {
-            var allemployees = _storage.AllEmployees();
+            var allemployees = EmployeeStorage.AllEmployees();
             if (!allemployees.Any())
             {
                 Console.WriteLine("No employees entered!");
-                return Enumerable.Empty<IEmployeeBase>();
             }
-            return allemployees;
+            else
+            {
+                foreach (var employee in allemployees)
+                {
+                    Console.WriteLine($"{employee.GetInfo()}");
+                }
+            }
+            
+            
         }
-        public IEnumerable<IEmployeeBase> DisplayEmployeesWithoutCEO() 
+        public void DisplayEmployeesWithoutCEO() 
         {
-            var employeeswithoutceo = _storage.AllEmployees().Where(e => e.GetType().Name != "CEO");
+            var employeeswithoutceo = EmployeeStorage.AllEmployees().Where(e => e.GetType().Name != "CEO");
             if (!employeeswithoutceo.Any())
             {
                 Console.WriteLine("No employees entered!");
-                return Enumerable.Empty<IEmployeeBase>();
             }
-            return employeeswithoutceo;
+            else
+            {
+                foreach (var employee in employeeswithoutceo)
+                {
+                    Console.WriteLine($"{employee.GetInfo()}");
+                }
+            }
         }
-        public IEnumerable<IEmployeeBase> ListByRole(string role) 
+        public void ListByRole(string role) 
         {
-            var listbyrole = _storage.AllEmployees().Where(e => e.GetType().Name.Equals(role, StringComparison.OrdinalIgnoreCase));
+            var listbyrole = EmployeeStorage.AllEmployees().Where(e => e.GetType().Name.Equals(role, StringComparison.OrdinalIgnoreCase));
             if (!listbyrole.Any())
             {
                 Console.WriteLine($"There are no employees entered for the {role} role!");
-                return Enumerable.Empty<IEmployeeBase>();
             }
-            Console.WriteLine("List by {role}");
-            return listbyrole;
+            else
+            {
+                Console.WriteLine($"List by {role}");
+                foreach (var employee in listbyrole) 
+                {
+                    Console.WriteLine($"{employee.GetInfo()}");
+                }
+            }
+            
         }
     }
 }

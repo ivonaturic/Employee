@@ -12,8 +12,8 @@ namespace Employee.Services
     {
         void AddEmployeesService();
         void RemoveEmployeesService(int id);
-        IEnumerable<IEmployeeBase> DisplayAllEmployees();
-        IEnumerable<IEmployeeBase> DisplayEmployeesWithoutCEO();
-        IEnumerable<IEmployeeBase> ListByRole(string role);
+        void DisplayAllEmployees();
+        void DisplayEmployeesWithoutCEO();
+        void ListByRole(string role);
     }
 }

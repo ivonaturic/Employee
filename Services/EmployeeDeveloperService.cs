@@ -12,30 +12,29 @@ namespace Employee.Services
     internal class EmployeeDeveloperService : EmployeeBaseService<Developer>
     {
         protected Developer developer;
-        public IStorage<Developer> _storaGE = new EmployeeStorage<Developer>();
-
         public EmployeeDeveloperService(Developer dEVELOPER) : base(dEVELOPER)
         {
             developer = dEVELOPER;
         }
-        public virtual void AddEmployeesService() 
+        public override void AddEmployeesService() 
         {
 
             base.AddEmployeesService();
 
             Console.WriteLine("Enter project: ");
-            string devProject = Console.ReadLine();
+            developer.Project = Console.ReadLine();
            
             Console.WriteLine("Is student? true/false ");
             string isStudentstring = Console.ReadLine();
-            bool isStudent = bool.Parse(isStudentstring);
+            developer.IsStudent = bool.Parse(isStudentstring);
 
-            //var developer = new Developer(devIdInt, devfirstName, devlastName, devAge, devProject, isStudent);
-            //base.AddEmployeesService(developer);
             try
             {
-                var newDeveloper = new Developer(baseIdInt, basefirstName, baselastName, baseAgeInt, devProject, isStudent);
-                _storaGE.AddEmployees(newDeveloper);
+                developer.Id = base.baseIdInt;
+                developer.FirstName = base.basefirstName;
+                developer.LastName = base.baselastName;
+                developer.Age = base.baseAgeInt;
+                EmployeeStorage.AddEmployees(developer);
                 Console.WriteLine("Developer added successfully!");
             }
             catch (Exception ex)

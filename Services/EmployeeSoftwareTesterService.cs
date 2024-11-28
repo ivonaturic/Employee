@@ -12,7 +12,6 @@ namespace Employee.Services
     internal class EmployeeSoftwareTesterService : EmployeeBaseService<SoftwareTester>
     {
         protected SoftwareTester softwaretester;
-        public IStorage<SoftwareTester> _storageee = new EmployeeStorage<SoftwareTester>();
 
         public EmployeeSoftwareTesterService(SoftwareTester sOFTWARETESTER) : base(sOFTWARETESTER)
         {
@@ -24,18 +23,19 @@ namespace Employee.Services
            
             base.AddEmployeesService();
             Console.WriteLine("Enter project: ");
-            string stProject = Console.ReadLine();
+            softwaretester.Project = Console.ReadLine();
               
             Console.WriteLine("Uses automated tests? true/false ");
             string stUsesAutomatedTestsstring = Console.ReadLine();
-            bool stUsesAutomatedTests = bool.Parse(stUsesAutomatedTestsstring);
+            softwaretester.UseAutomatedTests = bool.Parse(stUsesAutomatedTestsstring);
 
-            //var softwaretester = new SoftwareTester(stIdInt, stfirstName, stlastName, stAge, stProject, stUsesAutomatedTests);
-            //base.AddEmployeesService(softwaretester);
             try
             {
-                var newSoftwareTester = new SoftwareTester(baseIdInt, basefirstName, baselastName, baseAgeInt, stProject, stUsesAutomatedTests);
-                _storageee.AddEmployees(newSoftwareTester);
+                softwaretester.Id = base.baseIdInt;
+                softwaretester.FirstName = base.basefirstName;
+                softwaretester.LastName = base.baselastName;
+                softwaretester.Age = base.baseAgeInt;
+                EmployeeStorage.AddEmployees(softwaretester);
                 Console.WriteLine("Developer added successfully!");
             }
             catch (Exception ex)

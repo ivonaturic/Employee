@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Employee.Storage
 {
-    public interface IStorage<T> where T : IEmployeeBase
+    /*public interface IStorage<T> where T : IEmployeeBase
     {
         void AddEmployees(T entity);
         void RemoveEmployees(T entity);
         IEnumerable<T> AllEmployees();
-    }
+    }*/
 }

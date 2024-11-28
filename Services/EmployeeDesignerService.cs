@@ -12,7 +12,6 @@ namespace Employee.Services
     internal class EmployeeDesignerService : EmployeeBaseService<Designer>
     {
         protected Designer designer;
-        private readonly IStorage<Designer> _storagE = new EmployeeStorage<Designer>();
 
         public EmployeeDesignerService(Designer dESIGNER) : base(dESIGNER)
         {
@@ -31,12 +30,11 @@ namespace Employee.Services
 
             try
             {
-          
-              
-                _storagE.AddEmployees(designer);
-
-                //var newDesigner = new Designer(baseIdInt, basefirstName, baselastName, baseAgeInt, desProject, descanDraw);
-
+                designer.Id = base.baseIdInt;
+                designer.FirstName = base.basefirstName;
+                designer.LastName = base.baselastName;
+                designer.Age = base.baseAgeInt;
+                EmployeeStorage.AddEmployees(designer);
                 Console.WriteLine("Designer added successfully!");
             }
             catch (Exception ex)

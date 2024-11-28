@@ -6,20 +6,13 @@ using System.Threading.Tasks;
 
 namespace Employee.Roles
 {
-    public abstract class EmployeeBase : IEmployeeBase
+    public  class EmployeeBase : IEmployeeBase
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
 
-        public EmployeeBase(int id, string firstName, string lastName, int age)
-        {
-            Id = id;
-            FirstName = firstName;
-            LastName = lastName;
-            Age = age;
-        }
-        public virtual string GetInfo() => $"Id = {Id} {FirstName} {LastName} Age = {Age}";
+        public virtual string GetInfo() => $"{FirstName} {LastName} Age = {Age}";
     }
 }

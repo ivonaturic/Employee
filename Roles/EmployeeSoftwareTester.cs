@@ -12,11 +12,6 @@ namespace Employee.Roles
         public string Project { get; set; }
         public bool UseAutomatedTests { get; set; }
 
-        public SoftwareTester(int id, string firstName, string lastName, int age, string project, bool useAutomatedTests) : base(id, firstName, lastName, age)
-        {
-            Project = project;
-            UseAutomatedTests = useAutomatedTests;
-        }
         public override string GetInfo() => $"{base.GetInfo()} Project = {Project} Use Automated Test = {UseAutomatedTests}";
 
     }

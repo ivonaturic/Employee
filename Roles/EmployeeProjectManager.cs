@@ -11,10 +11,6 @@ namespace Employee.Roles
     {
         public string Project { get; set; }
 
-        public ProjectManager(int id, string firstName, string lastName, int age, string project) : base(id, firstName, lastName, age)
-        {
-            Project = project;
-        }
         public override string GetInfo() => $"{base.GetInfo()} Project = {Project}";
     } 
 }

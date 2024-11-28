@@ -8,21 +8,21 @@ using Employee.Roles;
 
 namespace Employee.Storage
 {
-    public class EmployeeStorage<T> : IStorage<T> where T : IEmployeeBase
+    public static class EmployeeStorage
     {
-        private readonly List<T> employeelist = new List<T>();
+        public static List<EmployeeBase> employeelist = new List<EmployeeBase>();
 
-        public void AddEmployees(T entity) 
+        public static void AddEmployees(EmployeeBase entity) 
         {
             employeelist.Add(entity);   
         }
 
-        public void RemoveEmployees(T entity)
+        public static void RemoveEmployees(EmployeeBase entity)
         {
             employeelist.Remove(entity);
         }
 
-        public IEnumerable<T> AllEmployees() 
+        public static IEnumerable<EmployeeBase> AllEmployees() 
         {
             return employeelist.ToList();
         }
