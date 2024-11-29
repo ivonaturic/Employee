@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Employee.Common
+namespace Employee.Constants
 {
     public static class ConstantsRoles
     {

@@ -4,16 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Employee.Common
+namespace Employee.Constants
 {
     public static class EXIT
     {
-        public static void Exit(string entry)
+        public static bool Exit(string entry)
         {
-            if (entry == "exit")
+            if (entry.ToLower() == "exit")
             {
-                Console.WriteLine("Prekid unosa!");
-                return;
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

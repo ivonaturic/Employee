@@ -16,5 +16,10 @@ namespace Employee.Constants
         public const string ListWithoutCEO = "List without CEO: ";
 
         public const string InputId = "Input ID: ";
+        public const string EnterProject = "Enter project: ";
+
+        public const string NonExistentEmployee ="The employee does not exist.";
+        public const string NoEnteredEmployee = "No employees entered!";
+
     }
 }
