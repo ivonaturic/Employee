@@ -1,4 +1,5 @@
-﻿using Employee.Roles;
+﻿using Employee.Constants;
+using Employee.Roles;
 using Employee.Storage;
 using Employee.Validation;
 using System;
@@ -11,29 +12,42 @@ namespace Employee.Services
 {
     internal class EmployeeDesignerService : EmployeeBaseService<Designer>
     {
+        protected string inputCanDraw;
         protected Designer designer;
-
         public EmployeeDesignerService(Designer dESIGNER) : base(dESIGNER)
         {
             designer = dESIGNER;
         }
-        public override void AddEmployeesService() 
+        public override void AddEmployeesService()
         {
-
             base.AddEmployeesService();
-            Console.WriteLine("Enter project: ");
-            designer.Project = Console.ReadLine();
-            
-            Console.WriteLine("Can draw? true/false ");
-            string descanDrawstring = Console.ReadLine();   
-            designer.CanDraw = bool.Parse(descanDrawstring);
+            if (!EXIT.Exit(base.inputId)) return;
+            if (!EXIT.Exit(base.firstName)) return;
+            if (!EXIT.Exit(base.lastName)) return;
+            if (!EXIT.Exit(base.inputAge)) return;
+            do
+            {
+                Console.WriteLine(ConstantsMessages.EnterProject);
+                designer.Project = Console.ReadLine();
+                if (!EXIT.Exit(designer.Project)) return;
+            }
+            while (!EmployeeValidation.ValidationString(designer.Project));
+
+            do
+            {
+                Console.WriteLine("Can draw? true/false ");
+                inputCanDraw = Console.ReadLine();
+                if (!EXIT.Exit(inputCanDraw)) return;
+            }
+            while (!EmployeeValidation.ValidationBoolean(inputCanDraw));
+            designer.CanDraw = bool.Parse(inputCanDraw);
 
             try
             {
-                designer.Id = base.baseIdInt;
-                designer.FirstName = base.basefirstName;
-                designer.LastName = base.baselastName;
-                designer.Age = base.baseAgeInt;
+                designer.Id = base.id;
+                designer.FirstName = base.firstName;
+                designer.LastName = base.lastName;
+                designer.Age = base.age;
                 EmployeeStorage.AddEmployees(designer);
                 Console.WriteLine("Designer added successfully!");
             }

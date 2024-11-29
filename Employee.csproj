@@ -59,7 +59,6 @@
     <Compile Include="Roles\IEmployeeBase.cs" />
     <Compile Include="Services\EmployeeBaseService.cs" />
     <Compile Include="Services\EmployeeCEOService.cs" />
-    <Compile Include="Services\EmployeeCommands.cs" />
     <Compile Include="Services\EmployeeDesignerService.cs" />
     <Compile Include="Services\EmployeeDeveloperService.cs" />
     <Compile Include="Services\EmployeeProjectManagerService.cs" />
@@ -67,7 +66,6 @@
     <Compile Include="Services\Factory.cs" />
     <Compile Include="Services\IEmployeeBaseService.cs" />
     <Compile Include="Storage\EmployeeStorage.cs" />
-    <Compile Include="Storage\IStorage.cs" />
     <Compile Include="Validation\Validation.cs" />
   </ItemGroup>
   <ItemGroup>

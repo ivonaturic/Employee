@@ -1,4 +1,4 @@
-﻿using Employee.Common;
+﻿using Employee.Constants;
 using Employee.Roles;
 using Employee.Storage;
 using Employee.Validation;
@@ -13,10 +13,12 @@ namespace Employee.Services
 {
     public class EmployeeBaseService<T> : IEmployeeBaseService where T : IEmployeeBase
     {
-        protected int baseIdInt;
-        protected string basefirstName;
-        protected string baselastName;
-        protected int baseAgeInt;
+        protected int id;
+        protected string firstName;
+        protected string lastName;
+        protected int age;
+        protected string inputId;
+        protected string inputAge;
 
         protected T _employee;
 
@@ -27,47 +29,59 @@ namespace Employee.Services
         
         public virtual void AddEmployeesService() 
         {
-            Console.WriteLine("New entry: ");
-            Console.WriteLine("Id: ");
-            string baseIdString = Console.ReadLine();
-            baseIdInt = int.Parse(baseIdString);
-            var rememp = EmployeeStorage.AllEmployees().FirstOrDefault(e => e.Id == baseIdInt);
-            if (rememp != null)
+            Console.WriteLine("New employee: ");
+            do
             {
-                Console.WriteLine("Employee with that ID already exists!");
+                Console.WriteLine("Id: ");
+                inputId = Console.ReadLine();
+                if (!EXIT.Exit(inputId)) return;
             }
-            Console.WriteLine("First name: ");
-            basefirstName = Console.ReadLine();
-            Console.WriteLine("Last name: ");
-            baselastName = Console.ReadLine();
-            Console.WriteLine("Age: ");
-            string baseAgeString = Console.ReadLine();
-            baseAgeInt = int.Parse(baseAgeString);
+            while (!EmployeeValidation.ValidationId(inputId));
+            id = int.Parse(inputId);
+
+            do
+            {
+                Console.WriteLine("First name: ");
+                firstName = Console.ReadLine();
+                if (!EXIT.Exit(firstName)) return;
+            } 
+            while (!EmployeeValidation.ValidationNameOrLastName(firstName));
+            do
+            {
+                Console.WriteLine("Last name: ");
+                lastName = Console.ReadLine();
+                if (!EXIT.Exit(lastName)) return;
+            } 
+            while (!EmployeeValidation.ValidationNameOrLastName(lastName));
+            do
+            {
+                Console.WriteLine("Age: ");
+                inputAge = Console.ReadLine();
+                if (!EXIT.Exit(inputAge)) return;
+            } 
+            while (!EmployeeValidation.ValidationAge(inputAge));
+            age = int.Parse(inputAge);
         }
         public void RemoveEmployeesService(int id) 
         {
             var rememp = EmployeeStorage.AllEmployees().SingleOrDefault(e => e.Id == id);
             if (rememp == null)
             {
-                Console.WriteLine("The employee does not exist.");
+                Console.WriteLine(ConstantsMessages.NonExistentEmployee);
                 return;
             }
-            try
+            else
             {
                 EmployeeStorage.RemoveEmployees(rememp);
+                Console.WriteLine($"Employee with ID = {id} is removed!");
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while removing {ex.Message}");
-            }
-            
         }
         public virtual void DisplayAllEmployees() 
         {
             var allemployees = EmployeeStorage.AllEmployees();
             if (!allemployees.Any())
             {
-                Console.WriteLine("No employees entered!");
+                Console.WriteLine(ConstantsMessages.NoEnteredEmployee);
             }
             else
             {
@@ -76,15 +90,13 @@ namespace Employee.Services
                     Console.WriteLine($"{employee.GetInfo()}");
                 }
             }
-            
-            
         }
         public void DisplayEmployeesWithoutCEO() 
         {
             var employeeswithoutceo = EmployeeStorage.AllEmployees().Where(e => e.GetType().Name != "CEO");
             if (!employeeswithoutceo.Any())
             {
-                Console.WriteLine("No employees entered!");
+                Console.WriteLine(ConstantsMessages.NoEnteredEmployee);
             }
             else
             {
@@ -103,7 +115,7 @@ namespace Employee.Services
             }
             else
             {
-                Console.WriteLine($"List by {role}");
+                Console.WriteLine($"List of {role}");
                 foreach (var employee in listbyrole) 
                 {
                     Console.WriteLine($"{employee.GetInfo()}");

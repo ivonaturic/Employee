@@ -1,4 +1,5 @@
-﻿using Employee.Roles;
+﻿using Employee.Constants;
+using Employee.Roles;
 using Employee.Storage;
 using Employee.Validation;
 using System;
@@ -20,16 +21,24 @@ namespace Employee.Services
         public override void AddEmployeesService() 
         {
             base.AddEmployeesService();
-
-            Console.WriteLine("Enter project");
-            projectmanager.Project = Console.ReadLine();
+            if (!EXIT.Exit(base.inputId)) return;
+            if (!EXIT.Exit(base.firstName)) return;
+            if (!EXIT.Exit(base.lastName)) return;
+            if (!EXIT.Exit(base.inputAge)) return;
+            do
+            {
+                Console.WriteLine(ConstantsMessages.EnterProject);
+                projectmanager.Project = Console.ReadLine();
+                if (!EXIT.Exit(projectmanager.Project)) return;
+            } 
+            while (!EmployeeValidation.ValidationString(projectmanager.Project));
 
             try
             {
-                projectmanager.Id = base.baseIdInt;
-                projectmanager.FirstName = base.basefirstName;
-                projectmanager.LastName = base.baselastName;
-                projectmanager.Age = base.baseAgeInt;
+                projectmanager.Id = base.id;
+                projectmanager.FirstName = base.firstName;
+                projectmanager.LastName = base.lastName;
+                projectmanager.Age = base.age;
                 EmployeeStorage.AddEmployees(projectmanager);
                 Console.WriteLine("ProjectManager added successfully!");
             }

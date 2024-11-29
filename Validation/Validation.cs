@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Employee.Storage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,36 @@ namespace Employee.Validation
 
     public static class EmployeeValidation
     {
+        public static bool ValidationId(string idstring) 
+        {
+            int id;
+            if (int.TryParse(idstring, out id))
+            {
+                if (id >= 1)
+                {
+                    var rememp = EmployeeStorage.AllEmployees().FirstOrDefault(e => e.Id == id);
+                    if (rememp != null)
+                    {
+                        Console.WriteLine("Employee with that ID already exists!");
+                        return false;
+                    }
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("ID must be positive number");
+                    return false;
+                }
+            }
+            else
+            {
+                Console.WriteLine("ID must be a number!");
+                return false;
+            }
+
+
+
+        }
         public static bool ValidationString(string input) 
         {
             if (string.IsNullOrWhiteSpace(input)) 

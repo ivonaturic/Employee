@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Employee.Constants;
 using Employee.Roles;
 using Employee.Storage;
+using Employee.Validation;
 
 namespace Employee.Services
 {
     public class EmployeeCEOService : EmployeeBaseService<CEO>
     {
+        protected string inputCeoYears;
         protected CEO ceo;
-
         public EmployeeCEOService(CEO cEO) : base(cEO) 
         {
             ceo = cEO;  
         }
         public override void AddEmployeesService() 
         {
-            var ceoo = EmployeeStorage.AllEmployees().OfType<CEO>().FirstOrDefault();
-            if (ceoo != null)
+            var checkCEO = EmployeeStorage.AllEmployees().OfType<CEO>().FirstOrDefault();
+            if (checkCEO != null)
             {
                 Console.WriteLine("CEO already exists, there can only be one!");
                 return;
@@ -27,20 +29,27 @@ namespace Employee.Services
             else
             {
                 base.AddEmployeesService();
-                Console.WriteLine("Years of CEO: ");
-                string ceoYearsstring = Console.ReadLine();
-                ceo.CeoYears = int.Parse(ceoYearsstring);
+                if (!EXIT.Exit(base.inputId)) return;
+                if (!EXIT.Exit(base.firstName)) return;
+                if (!EXIT.Exit(base.lastName)) return;
+                if (!EXIT.Exit(base.inputAge)) return;
+                do
+                {
+                    Console.WriteLine("Years of CEO: ");
+                    inputCeoYears = Console.ReadLine();
+                    if (!EXIT.Exit(inputCeoYears)) return;
+                } 
+                while (!EmployeeValidation.ValidationCEOAge(inputCeoYears));
+                ceo.CeoYears = int.Parse(inputCeoYears);
             }
-
             try
             {
-                ceo.Id = base.baseIdInt;
-                ceo.FirstName = base.basefirstName;
-                ceo.LastName = base.baselastName;
-                ceo.Age = base.baseAgeInt;
+                ceo.Id = base.id;
+                ceo.FirstName = base.firstName;
+                ceo.LastName = base.lastName;
+                ceo.Age = base.age;
                 EmployeeStorage.AddEmployees(ceo);
                 Console.WriteLine("CEO added successfully!");
-                
             }
             catch (Exception ex) 
             {
