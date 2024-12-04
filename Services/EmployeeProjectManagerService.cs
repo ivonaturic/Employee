@@ -21,17 +21,17 @@ namespace Employee.Services
         public override void AddEmployeesService() 
         {
             base.AddEmployeesService();
-            if (!EXIT.Exit(base.inputId)) return;
-            if (!EXIT.Exit(base.firstName)) return;
-            if (!EXIT.Exit(base.lastName)) return;
-            if (!EXIT.Exit(base.inputAge)) return;
+            if (!ConsoleValidation.Exit(base.inputId)) return;
+            if (!ConsoleValidation.Exit(base.firstName)) return;
+            if (!ConsoleValidation.Exit(base.lastName)) return;
+            if (!ConsoleValidation.Exit(base.inputAge)) return;
             do
             {
                 Console.WriteLine(ConstantsMessages.EnterProject);
                 projectmanager.Project = Console.ReadLine();
-                if (!EXIT.Exit(projectmanager.Project)) return;
+                if (!ConsoleValidation.Exit(projectmanager.Project)) return;
             } 
-            while (!EmployeeValidation.ValidationString(projectmanager.Project));
+            while (!ConsoleValidation.ValidationString(projectmanager.Project));
 
             try
             {

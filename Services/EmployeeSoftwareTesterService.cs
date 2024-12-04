@@ -22,25 +22,25 @@ namespace Employee.Services
         public override void AddEmployeesService() 
         {
             base.AddEmployeesService();
-            if (!EXIT.Exit(base.inputId)) return;
-            if (!EXIT.Exit(base.firstName)) return;
-            if (!EXIT.Exit(base.lastName)) return;
-            if (!EXIT.Exit(base.inputAge)) return;
+            if (!ConsoleValidation.Exit(base.inputId)) return;
+            if (!ConsoleValidation.Exit(base.firstName)) return;
+            if (!ConsoleValidation.Exit(base.lastName)) return;
+            if (!ConsoleValidation.Exit(base.inputAge)) return;
             do
             {
                 Console.WriteLine(ConstantsMessages.EnterProject);
                 softwaretester.Project = Console.ReadLine();
-                if (!EXIT.Exit(softwaretester.Project)) return;
+                if (!ConsoleValidation.Exit(softwaretester.Project)) return;
             }
-            while (!EmployeeValidation.ValidationString(softwaretester.Project));
+            while (!ConsoleValidation.ValidationString(softwaretester.Project));
 
             do
             {
                 Console.WriteLine("Uses automated tests? true/false ");
                 inputUseAutomatedTests = Console.ReadLine();
-                if (!EXIT.Exit(inputUseAutomatedTests)) return;
+                if (!ConsoleValidation.Exit(inputUseAutomatedTests)) return;
             }
-            while (!EmployeeValidation.ValidationBoolean(inputUseAutomatedTests));
+            while (!ConsoleValidation.ValidationBoolean(inputUseAutomatedTests));
             softwaretester.UseAutomatedTests = bool.Parse(inputUseAutomatedTests);
 
             try

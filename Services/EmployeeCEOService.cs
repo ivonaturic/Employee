@@ -23,23 +23,23 @@ namespace Employee.Services
             var checkCEO = EmployeeStorage.AllEmployees().OfType<CEO>().FirstOrDefault();
             if (checkCEO != null)
             {
-                Console.WriteLine("CEO already exists, there can only be one!");
+                ConstantsMessages.CEOExist();
                 return;
             }
             else
             {
                 base.AddEmployeesService();
-                if (!EXIT.Exit(base.inputId)) return;
-                if (!EXIT.Exit(base.firstName)) return;
-                if (!EXIT.Exit(base.lastName)) return;
-                if (!EXIT.Exit(base.inputAge)) return;
+                if (!ConsoleValidation.Exit(base.inputId)) return;
+                if (!ConsoleValidation.Exit(base.firstName)) return;
+                if (!ConsoleValidation.Exit(base.lastName)) return;
+                if (!ConsoleValidation.Exit(base.inputAge)) return;
                 do
                 {
                     Console.WriteLine("Years of CEO: ");
                     inputCeoYears = Console.ReadLine();
-                    if (!EXIT.Exit(inputCeoYears)) return;
+                    if (!ConsoleValidation.Exit(inputCeoYears)) return;
                 } 
-                while (!EmployeeValidation.ValidationCEOAge(inputCeoYears));
+                while (!ConsoleValidation.ValidationCEOAge(inputCeoYears));
                 ceo.CeoYears = int.Parse(inputCeoYears);
             }
             try

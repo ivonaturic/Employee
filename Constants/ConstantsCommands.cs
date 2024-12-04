@@ -14,5 +14,6 @@ namespace Employee.Constants
         public const string DISPLAY = "display";
         public const string LIST = "list";
         public const string ROLELIST = "rolelist";
+        public const string EXIT = "exit";
     }
 }

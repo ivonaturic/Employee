@@ -21,25 +21,25 @@ namespace Employee.Services
         public override void AddEmployeesService() 
         {
             base.AddEmployeesService();
-            if (!EXIT.Exit(base.inputId)) return;
-            if (!EXIT.Exit(base.firstName)) return;
-            if (!EXIT.Exit(base.lastName)) return;
-            if (!EXIT.Exit(base.inputAge)) return;
+            if (!ConsoleValidation.Exit(base.inputId)) return;
+            if (!ConsoleValidation.Exit(base.firstName)) return;
+            if (!ConsoleValidation.Exit(base.lastName)) return;
+            if (!ConsoleValidation.Exit(base.inputAge)) return;
             do
             {
                 Console.WriteLine(ConstantsMessages.EnterProject);
                 developer.Project = Console.ReadLine();
-                if (!EXIT.Exit(developer.Project)) return;
+                if (!ConsoleValidation.Exit(developer.Project)) return;
             }
-            while (!EmployeeValidation.ValidationString(developer.Project));
+            while (!ConsoleValidation.ValidationString(developer.Project));
 
             do
             {
                 Console.WriteLine("Is student? true/false ");
                 inputIsStudent = Console.ReadLine();
-                if (!EXIT.Exit(inputIsStudent)) return;
+                if (!ConsoleValidation.Exit(inputIsStudent)) return;
             }
-            while (!EmployeeValidation.ValidationBoolean(inputIsStudent));
+            while (!ConsoleValidation.ValidationBoolean(inputIsStudent));
             developer.IsStudent = bool.Parse(inputIsStudent);
 
             try

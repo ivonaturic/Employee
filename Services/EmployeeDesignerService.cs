@@ -21,25 +21,25 @@ namespace Employee.Services
         public override void AddEmployeesService()
         {
             base.AddEmployeesService();
-            if (!EXIT.Exit(base.inputId)) return;
-            if (!EXIT.Exit(base.firstName)) return;
-            if (!EXIT.Exit(base.lastName)) return;
-            if (!EXIT.Exit(base.inputAge)) return;
+            if (!ConsoleValidation.Exit(base.inputId)) return;
+            if (!ConsoleValidation.Exit(base.firstName)) return;
+            if (!ConsoleValidation.Exit(base.lastName)) return;
+            if (!ConsoleValidation.Exit(base.inputAge)) return;
             do
             {
                 Console.WriteLine(ConstantsMessages.EnterProject);
                 designer.Project = Console.ReadLine();
-                if (!EXIT.Exit(designer.Project)) return;
+                if (!ConsoleValidation.Exit(designer.Project)) return;
             }
-            while (!EmployeeValidation.ValidationString(designer.Project));
+            while (!ConsoleValidation.ValidationString(designer.Project));
 
             do
             {
                 Console.WriteLine("Can draw? true/false ");
                 inputCanDraw = Console.ReadLine();
-                if (!EXIT.Exit(inputCanDraw)) return;
+                if (!ConsoleValidation.Exit(inputCanDraw)) return;
             }
-            while (!EmployeeValidation.ValidationBoolean(inputCanDraw));
+            while (!ConsoleValidation.ValidationBoolean(inputCanDraw));
             designer.CanDraw = bool.Parse(inputCanDraw);
 
             try

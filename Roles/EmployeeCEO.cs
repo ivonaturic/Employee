@@ -12,7 +12,7 @@ namespace Employee.Roles
         public int CeoYears { get; set; }
 
         
-        public override string GetInfo() => $"{base.GetInfo()} CEOAge = {CeoYears}";
+        public override string GetInfo() => $"{base.GetInfo()} Years of CEO = {CeoYears}";
 
     }
 }

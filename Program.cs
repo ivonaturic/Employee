@@ -10,55 +10,54 @@ using Employee.Validation;
 using Employee.Constants;
 using Employee.Storage;
 using Employee.Roles;
-using Employee.Constants;
 using System.Data;
 
 namespace Employee
 {
     internal class Program
     {
-
+        
         static void Main(string[] args)
         {
-            
+            ConstantsMessages.WelcomeMessage();
             IEmployeeBase employee = new EmployeeBase();
             IEmployeeBaseService employeeservice = new EmployeeBaseService<IEmployeeBase>(employee);
             
             do
             {
-                Console.WriteLine(ConstantsMessages.PossibleCommands);
+                ConstantsMessages.PossibleCommands();
                 string command = Console.ReadLine();
                 switch (command.ToLower())
                 {
                     case ConstantsCommands.HELP:
-                        Console.WriteLine(ConstantsHelp.HELP);
+                        ConstantsMessages.HelpCommand();
                         break;
                     case ConstantsCommands.ADD:
-                        Console.WriteLine(ConstantsMessages.PossibleRoles);
+                        ConstantsMessages.PossibleRoles();
                         string roleforinput = Console.ReadLine().ToLower();
                         IEmployeeBaseService employeeService = Factory.CreateRoleService(roleforinput);
                         employeeService.AddEmployeesService();
                         break;
                     case ConstantsCommands.REMOVE:
-                        Console.WriteLine(ConstantsMessages.InputId);
+                        ConstantsMessages.InputIdForRemoveEmployee();
                         int id = int.Parse(Console.ReadLine());
                         employeeservice.RemoveEmployeesService(id);
                         break;
                     case ConstantsCommands.DISPLAY:
-                        Console.WriteLine(ConstantsMessages.ListAllEmployees);
+                        ConstantsMessages.ListAllEmployees();
                         employeeservice.DisplayAllEmployees();
                         break;
                     case ConstantsCommands.LIST:
-                        Console.WriteLine(ConstantsMessages.ListWithoutCEO);
+                        ConstantsMessages.ListWithoutCEO();
                         employeeservice.DisplayEmployeesWithoutCEO();
                         break;
                     case ConstantsCommands.ROLELIST:
-                        Console.WriteLine(ConstantsMessages.PossibleRoles);
+                        ConstantsMessages.PossibleRoles();
                         string roleforoutput = Console.ReadLine().ToLower();
                         employeeservice.ListByRole(roleforoutput);
                         break;
                     default:
-                        Console.WriteLine(ConstantsMessages.NonExistentCommand);
+                        ConstantsMessages.NonExistentCommand();
                         break;
                 }
             } while (true);

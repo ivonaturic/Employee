@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Employee.Constants;
 
 namespace Employee.Validation
 {
 
-    public static class EmployeeValidation
+    public class ConsoleValidation
     {
         public static bool ValidationId(string idstring) 
         {
@@ -21,20 +22,20 @@ namespace Employee.Validation
                     var rememp = EmployeeStorage.AllEmployees().FirstOrDefault(e => e.Id == id);
                     if (rememp != null)
                     {
-                        Console.WriteLine("Employee with that ID already exists!");
+                        Console.WriteLine($"Employee with ID: {id} already exists!");
                         return false;
                     }
                     return true;
                 }
                 else
                 {
-                    Console.WriteLine("ID must be positive number");
+                    ConstantsMessages.EntryPositiveIntegerValidation();
                     return false;
                 }
             }
             else
             {
-                Console.WriteLine("ID must be a number!");
+                ConstantsMessages.EntryIntegerValidation();
                 return false;
             }
 
@@ -45,7 +46,7 @@ namespace Employee.Validation
         {
             if (string.IsNullOrWhiteSpace(input)) 
             {
-                Console.WriteLine("Entry cannot be empty.");
+                ConstantsMessages.EmptyEntry();
                 return false;
             }
             return true;
@@ -59,7 +60,7 @@ namespace Employee.Validation
             }
             else
             {
-                Console.WriteLine("The input must be true or false!");
+                ConstantsMessages.EntryBooleanValidation();
                 return false;
             }
         }
@@ -74,13 +75,13 @@ namespace Employee.Validation
                 }
                 else 
                 {
-                    Console.WriteLine("Age must be between 18 and 67!");
+                    ConstantsMessages.EntryAgeValidation();
                     return false;
                 }
             }
             else 
             {
-                Console.WriteLine("The entry must be a number!");
+                ConstantsMessages.EntryIntegerValidation();
                 return false;
             }
             
@@ -96,27 +97,27 @@ namespace Employee.Validation
                 }
                 else
                 {
-                    Console.WriteLine("CEO age must be between 0 and 40!");
+                    ConstantsMessages.EntryCEOAgeValidation();
                     return false;
                 }
             }
             else
             {
-                Console.WriteLine("The entry must be a number!");
+                ConstantsMessages.EntryIntegerValidation();
                 return false;
             }
 
         }
         public static bool ValidationRole(string x) 
         {
-            if (x == "ceo" || x == "projectmanager" || x == "developer" || x == "designer" || x == "softwaretester")
+            if (x == ConstantsRoles.CEO || x == ConstantsRoles.PM || x == ConstantsRoles.DEV || x == ConstantsRoles.DSNR || x == ConstantsRoles.ST)
             {
 
                 return true;
             }
             else
             {
-                Console.WriteLine("Non-existent role");
+                ConstantsMessages.NonExistentRole();
                 return false;
             }
         }
@@ -128,11 +129,21 @@ namespace Employee.Validation
             }
             else 
             {
-                Console.WriteLine("The entry must be a letter!");
+                ConstantsMessages.EntryLetterValidation();
                 return false;
                 
             }
-            
+        }
+        public static bool Exit(string entry)
+        {
+            if (entry.ToLower() == ConstantsCommands.EXIT)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

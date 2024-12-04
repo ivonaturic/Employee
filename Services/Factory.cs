@@ -27,10 +27,10 @@ namespace Employee.Services
                 case "softwaretester":
                     return new EmployeeSoftwareTesterService(new SoftwareTester());
                 default:
+                    break;
                     throw new ArgumentException("Invalid role type");
-                    return null;
             }
-            throw new InvalidOperationException("Invalid opeation!");
+            throw new InvalidOperationException("Invalid operation!");
         }
         
     }
