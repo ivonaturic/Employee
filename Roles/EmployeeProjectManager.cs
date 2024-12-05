@@ -10,7 +10,6 @@ namespace Employee.Roles
     public class ProjectManager : EmployeeBase
     {
         public string Project { get; set; }
-
         public override string GetInfo() => $"{base.GetInfo()} Project = {Project}";
     } 
 }

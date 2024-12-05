@@ -19,45 +19,46 @@ namespace Employee
         
         static void Main(string[] args)
         {
-            ConstantsMessages.WelcomeMessage();
+            StandardMessages.WelcomeMessage();
             IEmployeeBase employee = new EmployeeBase();
             IEmployeeBaseService employeeservice = new EmployeeBaseService<IEmployeeBase>(employee);
             
             do
             {
-                ConstantsMessages.PossibleCommands();
+                StandardMessages.PossibleCommands();
                 string command = Console.ReadLine();
                 switch (command.ToLower())
                 {
                     case ConstantsCommands.HELP:
-                        ConstantsMessages.HelpCommand();
+                        StandardMessages.HelpCommand();
                         break;
                     case ConstantsCommands.ADD:
-                        ConstantsMessages.PossibleRoles();
+                        StandardMessages.PossibleRoles();
                         string roleforinput = Console.ReadLine().ToLower();
                         IEmployeeBaseService employeeService = Factory.CreateRoleService(roleforinput);
+                        if (!ConsoleValidation.RoleType(employeeService)) break;
                         employeeService.AddEmployeesService();
                         break;
                     case ConstantsCommands.REMOVE:
-                        ConstantsMessages.InputIdForRemoveEmployee();
+                        PropertiesDataMessages.InputId();
                         int id = int.Parse(Console.ReadLine());
                         employeeservice.RemoveEmployeesService(id);
                         break;
                     case ConstantsCommands.DISPLAY:
-                        ConstantsMessages.ListAllEmployees();
+                        StandardMessages.ListAllEmployees();
                         employeeservice.DisplayAllEmployees();
                         break;
                     case ConstantsCommands.LIST:
-                        ConstantsMessages.ListWithoutCEO();
+                        StandardMessages.ListWithoutCEO();
                         employeeservice.DisplayEmployeesWithoutCEO();
                         break;
                     case ConstantsCommands.ROLELIST:
-                        ConstantsMessages.PossibleRoles();
+                        StandardMessages.PossibleRoles();
                         string roleforoutput = Console.ReadLine().ToLower();
                         employeeservice.ListByRole(roleforoutput);
                         break;
                     default:
-                        ConstantsMessages.NonExistentCommand();
+                        StandardMessages.NonExistentCommand();
                         break;
                 }
             } while (true);

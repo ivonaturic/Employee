@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Employee.Constants;
+using Employee.Services;
 
 namespace Employee.Validation
 {
@@ -22,20 +23,20 @@ namespace Employee.Validation
                     var rememp = EmployeeStorage.AllEmployees().FirstOrDefault(e => e.Id == id);
                     if (rememp != null)
                     {
-                        Console.WriteLine($"Employee with ID: {id} already exists!");
+                        StandardMessages.EmployeeExists();
                         return false;
                     }
                     return true;
                 }
                 else
                 {
-                    ConstantsMessages.EntryPositiveIntegerValidation();
+                    PropertiesDataMessages.EntryPositiveIntegerValidation();
                     return false;
                 }
             }
             else
             {
-                ConstantsMessages.EntryIntegerValidation();
+                PropertiesDataMessages.EntryIntegerValidation();
                 return false;
             }
 
@@ -46,7 +47,7 @@ namespace Employee.Validation
         {
             if (string.IsNullOrWhiteSpace(input)) 
             {
-                ConstantsMessages.EmptyEntry();
+                PropertiesDataMessages.EmptyEntry();
                 return false;
             }
             return true;
@@ -60,7 +61,7 @@ namespace Employee.Validation
             }
             else
             {
-                ConstantsMessages.EntryBooleanValidation();
+                PropertiesDataMessages.EntryBooleanValidation();
                 return false;
             }
         }
@@ -75,13 +76,13 @@ namespace Employee.Validation
                 }
                 else 
                 {
-                    ConstantsMessages.EntryAgeValidation();
+                    PropertiesDataMessages.EntryAgeValidation();
                     return false;
                 }
             }
             else 
             {
-                ConstantsMessages.EntryIntegerValidation();
+                PropertiesDataMessages.EntryIntegerValidation();
                 return false;
             }
             
@@ -97,13 +98,13 @@ namespace Employee.Validation
                 }
                 else
                 {
-                    ConstantsMessages.EntryCEOAgeValidation();
+                    PropertiesDataMessages.EntryCEOAgeValidation();
                     return false;
                 }
             }
             else
             {
-                ConstantsMessages.EntryIntegerValidation();
+                PropertiesDataMessages.EntryIntegerValidation();
                 return false;
             }
 
@@ -117,7 +118,7 @@ namespace Employee.Validation
             }
             else
             {
-                ConstantsMessages.NonExistentRole();
+                StandardMessages.NonExistentRole();
                 return false;
             }
         }
@@ -129,7 +130,7 @@ namespace Employee.Validation
             }
             else 
             {
-                ConstantsMessages.EntryLetterValidation();
+                PropertiesDataMessages.EntryLetterValidation();
                 return false;
                 
             }
@@ -144,6 +145,14 @@ namespace Employee.Validation
             {
                 return true;
             }
+        }
+        public static bool RoleType(IEmployeeBaseService role) 
+        {
+            if (role == null) 
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

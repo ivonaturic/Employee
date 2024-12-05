@@ -12,7 +12,6 @@ namespace Employee.Roles
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
-
         public virtual string GetInfo() => $"{FirstName} {LastName} Age = {Age}";
     }
 }

@@ -1,4 +1,5 @@
-﻿using Employee.Roles;
+﻿using Employee.Constants;
+using Employee.Roles;
 using Employee.Storage;
 using System;
 using System.Collections.Generic;
@@ -28,9 +29,9 @@ namespace Employee.Services
                     return new EmployeeSoftwareTesterService(new SoftwareTester());
                 default:
                     break;
-                    throw new ArgumentException("Invalid role type");
             }
-            throw new InvalidOperationException("Invalid operation!");
+            StandardMessages.NonExistentRole();
+            return null;
         }
         
     }

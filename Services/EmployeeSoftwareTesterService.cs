@@ -28,36 +28,25 @@ namespace Employee.Services
             if (!ConsoleValidation.Exit(base.inputAge)) return;
             do
             {
-                Console.WriteLine(ConstantsMessages.EnterProject);
+                PropertiesDataMessages.InputProject();
                 softwaretester.Project = Console.ReadLine();
                 if (!ConsoleValidation.Exit(softwaretester.Project)) return;
             }
             while (!ConsoleValidation.ValidationString(softwaretester.Project));
-
             do
             {
-                Console.WriteLine("Uses automated tests? true/false ");
+                PropertiesDataMessages.InputUseAutomatedTests();
                 inputUseAutomatedTests = Console.ReadLine();
                 if (!ConsoleValidation.Exit(inputUseAutomatedTests)) return;
             }
             while (!ConsoleValidation.ValidationBoolean(inputUseAutomatedTests));
             softwaretester.UseAutomatedTests = bool.Parse(inputUseAutomatedTests);
-
-            try
-            {
-                softwaretester.Id = base.id;
-                softwaretester.FirstName = base.firstName;
-                softwaretester.LastName = base.lastName;
-                softwaretester.Age = base.age;
-                EmployeeStorage.AddEmployees(softwaretester);
-                Console.WriteLine("Developer added successfully!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while adding CEO: {ex.Message}");
-            }
-
+            softwaretester.Id = base.id;
+            softwaretester.FirstName = base.firstName;
+            softwaretester.LastName = base.lastName;
+            softwaretester.Age = base.age;
+            EmployeeStorage.AddEmployees(softwaretester);
+            StandardMessages.AddedSuccessfully();
         }
-        
     }
 }

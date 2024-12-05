@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\ConstantsCommands.cs" />
-    <Compile Include="Constants\ConstantsMessages.cs" />
+    <Compile Include="Constants\PropertiesDataMessages.cs" />
+    <Compile Include="Constants\StandardMessages.cs" />
     <Compile Include="Constants\ConstantsRoles.cs" />
+    <Compile Include="Constants\CommonDataCapture.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\EmployeeBase.cs" />

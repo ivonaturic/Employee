@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Employee.Constants
 {
-    public class ConstantsMessages
+    public class StandardMessages
     {
         public static void WelcomeMessage() 
         {
@@ -20,7 +20,7 @@ namespace Employee.Constants
         }
         public static void HelpCommand() 
         {
-            Console.WriteLine("Application will allow you to create employees profiles by role! \n" +
+            Console.WriteLine("Application will allow you to create and search employees profiles by role! \n" +
                               "\n"+
                               "Add is for adding new employee including CEO. There can only be one CEO! \n" +
                               "Remove is used for remove employee by ID. CEO also can be removed with this method!\n" +
@@ -40,9 +40,21 @@ namespace Employee.Constants
         {
             Console.WriteLine("Non-existent role!");
         }
-        public static void InputIdForRemoveEmployee() 
+        public static void NonExistentEmployee()
         {
-            Console.WriteLine("Input ID: ");
+            Console.WriteLine("Non-existent employee!");
+        }
+        public static void NewEmployee()
+        {
+            Console.WriteLine("New employee: ");
+        }
+        public static void EmployeeIsRemoved() 
+        {
+            Console.WriteLine("Employee is removed!");
+        }
+        public static void NoEnteredEmployee()
+        {
+            Console.WriteLine("No employees entered!");
         }
         public static void ListAllEmployees() 
         {
@@ -52,51 +64,18 @@ namespace Employee.Constants
         {
             Console.WriteLine("List without CEO: ");
         }
-        public static void NonExistentEmployee() 
-        {
-            Console.WriteLine("The employee does not exist.");
-        }
-        public static void NoEnteredEmployee() 
-        {
-            Console.WriteLine("No employees entered!");
-        }
-        public static void NewEmployee() 
-        {
-            Console.WriteLine("New employee: ");
-        }
         public static void CEOExist() 
         {
             Console.WriteLine("CEO already exists, there can only be one!");
         }
-        public static void EntryIntegerValidation() 
+        public static void AddedSuccessfully()
         {
-            Console.WriteLine("The entry must be a number!");
+            Console.WriteLine("Added successfully!");
         }
-        public static void EntryPositiveIntegerValidation() 
+        public static void EmployeeExists()
         {
-            Console.WriteLine("ID must be positive number");
+            Console.WriteLine("Employee already exists!");
         }
-        public static void EntryLetterValidation() 
-        {
-            Console.WriteLine("The entry must be a letter!");
-        }
-        public static void EntryCEOAgeValidation() 
-        {
-            Console.WriteLine("CEO age must be between 0 and 40!");
-        }
-        public static void EntryAgeValidation() 
-        {
-            Console.WriteLine("Age must be between 18 and 67!");
-        }
-        public static void EntryBooleanValidation() 
-        {
-            Console.WriteLine("The input must be true or false!");
-        }
-        public static void EmptyEntry() 
-        {
-            Console.WriteLine("Entry cannot be empty.");
-        }
-        public const string EnterProject = "Enter project: ";
 
     }
 }

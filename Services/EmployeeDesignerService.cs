@@ -27,35 +27,26 @@ namespace Employee.Services
             if (!ConsoleValidation.Exit(base.inputAge)) return;
             do
             {
-                Console.WriteLine(ConstantsMessages.EnterProject);
+                PropertiesDataMessages.InputProject();
                 designer.Project = Console.ReadLine();
                 if (!ConsoleValidation.Exit(designer.Project)) return;
             }
             while (!ConsoleValidation.ValidationString(designer.Project));
-
-            do
+            /*do
             {
-                Console.WriteLine("Can draw? true/false ");
+                PropertiesDataMessages.InputCanDraw();
                 inputCanDraw = Console.ReadLine();
                 if (!ConsoleValidation.Exit(inputCanDraw)) return;
             }
-            while (!ConsoleValidation.ValidationBoolean(inputCanDraw));
+            while (!ConsoleValidation.ValidationBoolean(inputCanDraw));*/
+            CommonDataCapture.EnterDesignerData(out inputCanDraw);
             designer.CanDraw = bool.Parse(inputCanDraw);
-
-            try
-            {
-                designer.Id = base.id;
-                designer.FirstName = base.firstName;
-                designer.LastName = base.lastName;
-                designer.Age = base.age;
-                EmployeeStorage.AddEmployees(designer);
-                Console.WriteLine("Designer added successfully!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while adding CEO: {ex.Message}");
-            }
-
+            designer.Id = base.id;
+            designer.FirstName = base.firstName;
+            designer.LastName = base.lastName;
+            designer.Age = base.age;
+            EmployeeStorage.AddEmployees(designer);
+            StandardMessages.AddedSuccessfully();
         }
     }
 }

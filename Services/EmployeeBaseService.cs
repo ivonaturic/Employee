@@ -29,50 +29,21 @@ namespace Employee.Services
         
         public virtual void AddEmployeesService() 
         {
-            ConstantsMessages.NewEmployee();
-            do
-            {
-                Console.WriteLine("Id: ");
-                inputId = Console.ReadLine();
-                if (!ConsoleValidation.Exit(inputId)) return;
-            }
-            while (!ConsoleValidation.ValidationId(inputId));
-            id = int.Parse(inputId);
-            do
-            {
-                Console.WriteLine("First name: ");
-                firstName = Console.ReadLine();
-                if (!ConsoleValidation.Exit(firstName)) return;
-            } 
-            while (!ConsoleValidation.ValidationNameOrLastName(firstName));
-            do
-            {
-                Console.WriteLine("Last name: ");
-                lastName = Console.ReadLine();
-                if (!ConsoleValidation.Exit(lastName)) return;
-            } 
-            while (!ConsoleValidation.ValidationNameOrLastName(lastName));
-            do
-            {
-                Console.WriteLine("Age: ");
-                inputAge = Console.ReadLine();
-                if (!ConsoleValidation.Exit(inputAge)) return;
-            } 
-            while (!ConsoleValidation.ValidationAge(inputAge));
-            age = int.Parse(inputAge);
+            StandardMessages.NewEmployee();
+            CommonDataCapture.EnterCommonData(out inputId, out id, out firstName,out lastName,out inputAge, out age);
         }
         public void RemoveEmployeesService(int id) 
         {
             var rememp = EmployeeStorage.AllEmployees().SingleOrDefault(e => e.Id == id);
             if (rememp == null)
             {
-                ConstantsMessages.NonExistentEmployee();
+                StandardMessages.NonExistentEmployee();
                 return;
             }
             else
             {
                 EmployeeStorage.RemoveEmployees(rememp);
-                Console.WriteLine($"Employee with ID = {id} is removed!");
+                StandardMessages.EmployeeIsRemoved();
             }
         }
         public virtual void DisplayAllEmployees() 
@@ -80,7 +51,7 @@ namespace Employee.Services
             var allemployees = EmployeeStorage.AllEmployees();
             if (!allemployees.Any())
             {
-                ConstantsMessages.NoEnteredEmployee();
+                PropertiesDataMessages.InputId();
             }
             else
             {
@@ -95,7 +66,7 @@ namespace Employee.Services
             var employeeswithoutceo = EmployeeStorage.AllEmployees().Where(e => e.GetType().Name != "CEO");
             if (!employeeswithoutceo.Any())
             {
-                ConstantsMessages.NoEnteredEmployee();
+                StandardMessages.NoEnteredEmployee();
             }
             else
             {
@@ -110,11 +81,10 @@ namespace Employee.Services
             var listbyrole = EmployeeStorage.AllEmployees().Where(e => e.GetType().Name.Equals(role, StringComparison.OrdinalIgnoreCase));
             if (!listbyrole.Any())
             {
-                Console.WriteLine($"There are no employees entered for the {role} role!");
+                StandardMessages.NoEnteredEmployee();
             }
             else
             {
-                Console.WriteLine($"List of {role} role");
                 foreach (var employee in listbyrole) 
                 {
                     Console.WriteLine($"{employee.GetInfo()}");

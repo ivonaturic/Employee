@@ -27,36 +27,25 @@ namespace Employee.Services
             if (!ConsoleValidation.Exit(base.inputAge)) return;
             do
             {
-                Console.WriteLine(ConstantsMessages.EnterProject);
+                PropertiesDataMessages.InputProject();
                 developer.Project = Console.ReadLine();
                 if (!ConsoleValidation.Exit(developer.Project)) return;
             }
             while (!ConsoleValidation.ValidationString(developer.Project));
-
             do
             {
-                Console.WriteLine("Is student? true/false ");
+                PropertiesDataMessages.InputIsStudent();
                 inputIsStudent = Console.ReadLine();
                 if (!ConsoleValidation.Exit(inputIsStudent)) return;
             }
             while (!ConsoleValidation.ValidationBoolean(inputIsStudent));
             developer.IsStudent = bool.Parse(inputIsStudent);
-
-            try
-            {
-                developer.Id = base.id;
-                developer.FirstName = base.firstName;
-                developer.LastName = base.lastName;
-                developer.Age = base.age;
-                EmployeeStorage.AddEmployees(developer);
-                Console.WriteLine("Developer added successfully!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while adding CEO: {ex.Message}");
-            }
-
-
+            developer.Id = base.id;
+            developer.FirstName = base.firstName;
+            developer.LastName = base.lastName;
+            developer.Age = base.age;
+            EmployeeStorage.AddEmployees(developer);
+            StandardMessages.AddedSuccessfully();
         }
     }
 }

@@ -27,25 +27,17 @@ namespace Employee.Services
             if (!ConsoleValidation.Exit(base.inputAge)) return;
             do
             {
-                Console.WriteLine(ConstantsMessages.EnterProject);
+                PropertiesDataMessages.InputProject();
                 projectmanager.Project = Console.ReadLine();
                 if (!ConsoleValidation.Exit(projectmanager.Project)) return;
             } 
             while (!ConsoleValidation.ValidationString(projectmanager.Project));
-
-            try
-            {
-                projectmanager.Id = base.id;
-                projectmanager.FirstName = base.firstName;
-                projectmanager.LastName = base.lastName;
-                projectmanager.Age = base.age;
-                EmployeeStorage.AddEmployees(projectmanager);
-                Console.WriteLine("ProjectManager added successfully!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while adding CEO: {ex.Message}");
-            }
+            projectmanager.Id = base.id;
+            projectmanager.FirstName = base.firstName;
+            projectmanager.LastName = base.lastName;
+            projectmanager.Age = base.age;
+            EmployeeStorage.AddEmployees(projectmanager);
+            StandardMessages.AddedSuccessfully();
         }
     }
 }
