@@ -43,28 +43,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\ConstantsCommands.cs" />
-    <Compile Include="Constants\PropertiesDataMessages.cs" />
-    <Compile Include="Constants\StandardMessages.cs" />
-    <Compile Include="Constants\ConstantsRoles.cs" />
-    <Compile Include="Constants\CommonDataCapture.cs" />
+    <Compile Include="Common\ConstantsCommands.cs" />
+    <Compile Include="Common\PropertiesDataMessages.cs" />
+    <Compile Include="Common\StandardMessages.cs" />
+    <Compile Include="Common\ConstantsRoles.cs" />
+    <Compile Include="Common\PropertiesDataCapture.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Roles\EmployeeBase.cs" />
-    <Compile Include="Roles\EmployeeCEO.cs" />
-    <Compile Include="Roles\EmployeeDesigner.cs" />
-    <Compile Include="Roles\EmployeeDeveloper.cs" />
-    <Compile Include="Roles\EmployeeProjectManager.cs" />
-    <Compile Include="Roles\EmployeeSoftwareTester.cs" />
-    <Compile Include="Roles\IEmployeeBase.cs" />
-    <Compile Include="Services\EmployeeBaseService.cs" />
-    <Compile Include="Services\EmployeeCEOService.cs" />
-    <Compile Include="Services\EmployeeDesignerService.cs" />
-    <Compile Include="Services\EmployeeDeveloperService.cs" />
-    <Compile Include="Services\EmployeeProjectManagerService.cs" />
-    <Compile Include="Services\EmployeeSoftwareTesterService.cs" />
+    <Compile Include="Roles\BaseModel.cs" />
+    <Compile Include="Roles\CEOModel.cs" />
+    <Compile Include="Roles\DesignerModel.cs" />
+    <Compile Include="Roles\DeveloperModel.cs" />
+    <Compile Include="Roles\ProjectManagerModel.cs" />
+    <Compile Include="Roles\SoftwareTesterModel.cs" />
+    <Compile Include="Roles\IBaseModel.cs" />
+    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\CEOService.cs" />
+    <Compile Include="Services\DesignerService.cs" />
+    <Compile Include="Services\DeveloperService.cs" />
+    <Compile Include="Services\ProjectManagerService.cs" />
+    <Compile Include="Services\SoftwareTesterService.cs" />
     <Compile Include="Services\Factory.cs" />
-    <Compile Include="Services\IEmployeeBaseService.cs" />
+    <Compile Include="Services\IBaseService.cs" />
     <Compile Include="Storage\EmployeeStorage.cs" />
     <Compile Include="Validation\Validation.cs" />
   </ItemGroup>

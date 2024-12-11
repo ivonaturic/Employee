@@ -1,17 +1,14 @@
-﻿using Employee.Constants;
+﻿using Employee.Common;
 using Employee.Roles;
 using Employee.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Threading.Tasks;
 using Employee.Validation;
 
 namespace Employee.Services
 {
-    public class EmployeeBaseService<T> : IEmployeeBaseService where T : IEmployeeBase
+    public class BaseService<T> : IBaseService where T : IBaseModel
     {
         protected int id;
         protected string firstName;
@@ -22,7 +19,7 @@ namespace Employee.Services
 
         protected T _employee;
 
-        public EmployeeBaseService(T employee)
+        public BaseService(T employee)
         { 
             _employee = employee;
         }
@@ -30,7 +27,7 @@ namespace Employee.Services
         public virtual void AddEmployeesService() 
         {
             StandardMessages.NewEmployee();
-            CommonDataCapture.EnterCommonData(out inputId, out id, out firstName,out lastName,out inputAge, out age);
+            PropertiesDataCapture.EnterCommonData(out inputId, out id, out firstName,out lastName,out inputAge, out age);
         }
         public void RemoveEmployeesService(int id) 
         {
@@ -51,7 +48,7 @@ namespace Employee.Services
             var allemployees = EmployeeStorage.AllEmployees();
             if (!allemployees.Any())
             {
-                PropertiesDataMessages.InputId();
+                StandardMessages.NoEnteredEmployee();
             }
             else
             {
@@ -78,9 +75,21 @@ namespace Employee.Services
         }
         public void ListByRole(string role) 
         {
+            var roleAbbreviations = new Dictionary<string, string>
+            {
+                { ConstantsRoles.pm, ConstantsRoles.PM }, 
+                { ConstantsRoles.dev, ConstantsRoles.DEV }, 
+                { ConstantsRoles.dsnr, ConstantsRoles.DSNR } ,
+                { ConstantsRoles.st,  ConstantsRoles.ST},
+            };
+            if (roleAbbreviations.ContainsKey(role))
+            {
+                role = roleAbbreviations[role];
+            }
             var listbyrole = EmployeeStorage.AllEmployees().Where(e => e.GetType().Name.Equals(role, StringComparison.OrdinalIgnoreCase));
             if (!listbyrole.Any())
             {
+                if (!ConsoleValidation.Exit(role)) return;
                 StandardMessages.NoEnteredEmployee();
             }
             else

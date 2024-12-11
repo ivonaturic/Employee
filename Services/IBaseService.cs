@@ -8,7 +8,7 @@ using Employee.Storage;
 
 namespace Employee.Services
 {
-    public interface IEmployeeBaseService
+    public interface IBaseService
     {
         void AddEmployeesService();
         void RemoveEmployeesService(int id);

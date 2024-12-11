@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Employee.Constants;
+using Employee.Common;
 using Employee.Roles;
 
 namespace Employee.Storage
 {
     public static class EmployeeStorage
     {
-        public static List<EmployeeBase> employeelist = new List<EmployeeBase>();
+        public static List<BaseModel> employeelist = new List<BaseModel>();
 
-        public static void AddEmployees(EmployeeBase entity) 
+        public static void AddEmployees(BaseModel entity) 
         {
             employeelist.Add(entity);   
         }
 
-        public static void RemoveEmployees(EmployeeBase entity)
+        public static void RemoveEmployees(BaseModel entity)
         {
             employeelist.Remove(entity);
         }
 
-        public static IEnumerable<EmployeeBase> AllEmployees() 
+        public static IEnumerable<BaseModel> AllEmployees() 
         {
             return employeelist.ToList();
         }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Employee.Constants;
+using Employee.Common;
 using Employee.Services;
 
 namespace Employee.Validation
@@ -13,7 +13,7 @@ namespace Employee.Validation
 
     public class ConsoleValidation
     {
-        public static bool ValidationId(string idstring) 
+        public static bool ValidationInputId(string idstring) 
         {
             int id;
             if (int.TryParse(idstring, out id))
@@ -65,9 +65,10 @@ namespace Employee.Validation
                 return false;
             }
         }
+        public static int broj;
         public static bool ValidationAge(string x)
         {
-            int broj;
+            //int broj;
             if (int.TryParse(x, out broj))
             {
                 if (broj>=18 && broj<= 67)
@@ -89,10 +90,10 @@ namespace Employee.Validation
         }
         public static bool ValidationCEOAge(string x)
         {
-            int broj;
-            if (int.TryParse(x, out broj))
+            int ceogodine;
+            if (int.TryParse(x, out ceogodine))
             {
-                if (broj >= 0 && broj <= 40)
+                if (ceogodine <= broj-18)
                 {
                     return true;
                 }
@@ -101,6 +102,7 @@ namespace Employee.Validation
                     PropertiesDataMessages.EntryCEOAgeValidation();
                     return false;
                 }
+
             }
             else
             {
@@ -111,7 +113,7 @@ namespace Employee.Validation
         }
         public static bool ValidationRole(string x) 
         {
-            if (x == ConstantsRoles.CEO || x == ConstantsRoles.PM || x == ConstantsRoles.DEV || x == ConstantsRoles.DSNR || x == ConstantsRoles.ST)
+            if (x == ConstantsRoles.CEO || x == ConstantsRoles.PM || x == ConstantsRoles.pm || x == ConstantsRoles.DEV || x == ConstantsRoles.dev || x == ConstantsRoles.DSNR || x ==ConstantsRoles.dsnr || x == ConstantsRoles.ST || x == ConstantsRoles.st)
             {
 
                 return true;
@@ -146,13 +148,59 @@ namespace Employee.Validation
                 return true;
             }
         }
-        public static bool RoleType(IEmployeeBaseService role) 
+        public static bool ExitBase(string id, string firstname, string lastname, string age) 
+        {
+            if (id.ToLower() == ConstantsCommands.EXIT || firstname.ToLower() == ConstantsCommands.EXIT || lastname.ToLower() == ConstantsCommands.EXIT || age.ToLower() == ConstantsCommands.EXIT)
+            {
+                return false;
+            }
+            else 
+            {
+                return true;
+            }
+        }
+        public static bool RoleType(IBaseService role) 
         {
             if (role == null) 
             {
                 return false;
             }
             return true;
+        }
+        public static bool RoleType(string role)
+        {
+            if (role == null)
+            {
+                return false;
+            }
+            return true;
+        }
+        public static bool ValidationRemoveId(string removeId) 
+        {
+            int id;
+            if (int.TryParse(removeId, out id))
+            {
+                if (id >= 1)
+                {
+                    var rememp = EmployeeStorage.AllEmployees().FirstOrDefault(e => e.Id == id);
+                    if (rememp == null)
+                    {
+                        StandardMessages.NonExistentEmployee();
+                        return false;
+                    }
+                    return true;
+                }
+                else
+                {
+                    PropertiesDataMessages.EntryPositiveIntegerValidation();
+                    return false;
+                }
+            }
+            else
+            {
+                PropertiesDataMessages.EntryIntegerValidation();
+                return false;
+            }
         }
     }
 }

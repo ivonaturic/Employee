@@ -1,4 +1,4 @@
-﻿using Employee.Constants;
+﻿using Employee.Common;
 using Employee.Roles;
 using Employee.Storage;
 using System;
@@ -12,25 +12,28 @@ namespace Employee.Services
 {
     public class Factory
     {
-        public static IEmployeeBaseService CreateRoleService(string role)
+        public static IBaseService CreateRoleService(string role)
         {
 
             switch (role.ToLower()) 
             {
-                case "ceo":
-                    return new EmployeeCEOService(new CEO());
-                case "projectmanager":
-                    return new EmployeeProjectManagerService(new ProjectManager());
-                case "designer":
-                    return new EmployeeDesignerService(new Designer());
-                case "developer":
-                    return new EmployeeDeveloperService(new Developer());
-                case "softwaretester":
-                    return new EmployeeSoftwareTesterService(new SoftwareTester());
+                case ConstantsRoles.CEO:
+                    return new CEOService(new CEO());
+                case ConstantsRoles.PM:
+                case ConstantsRoles.pm:
+                    return new ProjectManagerService(new ProjectManager());
+                case ConstantsRoles.DSNR:
+                case ConstantsRoles.dsnr:
+                    return new DesignerService(new Designer());
+                case ConstantsRoles.DEV:
+                case ConstantsRoles.dev:
+                    return new DeveloperService(new Developer());
+                case ConstantsRoles.ST:
+                case ConstantsRoles.st:
+                    return new SoftwareTesterService(new SoftwareTester());
                 default:
                     break;
             }
-            StandardMessages.NonExistentRole();
             return null;
         }
         

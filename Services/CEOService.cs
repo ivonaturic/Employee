@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Employee.Constants;
+using Employee.Common;
 using Employee.Roles;
 using Employee.Storage;
 using Employee.Validation;
 
 namespace Employee.Services
 {
-    public class EmployeeCEOService : EmployeeBaseService<CEO>
+    public class CEOService : BaseService<CEO>
     {
         protected string inputCeoYears;
         protected CEO ceo;
-        public EmployeeCEOService(CEO cEO) : base(cEO) 
+        public CEOService(CEO cEO) : base(cEO) 
         {
             ceo = cEO;  
         }
@@ -29,17 +29,14 @@ namespace Employee.Services
             else
             {
                 base.AddEmployeesService();
-                if (!ConsoleValidation.Exit(base.inputId)) return;
-                if (!ConsoleValidation.Exit(base.firstName)) return;
-                if (!ConsoleValidation.Exit(base.lastName)) return;
-                if (!ConsoleValidation.Exit(base.inputAge)) return;
-
-                CommonDataCapture.EnterCeoData(out inputCeoYears);
-                ceo.CeoYears = int.Parse(inputCeoYears);
+                if(!ConsoleValidation.ExitBase(base.inputId, base.firstName, base.lastName, base.inputAge)) return;
+                PropertiesDataCapture.EnterCeoData(out inputCeoYears);
+                if (!ConsoleValidation.Exit(inputCeoYears)) return;
                 ceo.Id = base.id;
                 ceo.FirstName = base.firstName;
                 ceo.LastName = base.lastName;
                 ceo.Age = base.age;
+                ceo.CeoYears = int.Parse(inputCeoYears);
                 EmployeeStorage.AddEmployees(ceo);
                 StandardMessages.AddedSuccessfully();
             }
