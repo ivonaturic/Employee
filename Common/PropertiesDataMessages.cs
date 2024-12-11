@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Employee.Constants
+namespace Employee.Common
 {
     public static class PropertiesDataMessages
     {
@@ -43,7 +43,7 @@ namespace Employee.Constants
         }
         public static void InputUseAutomatedTests() 
         {
-            Console.WriteLine("Is student? true/false ");
+            Console.WriteLine("Use automated tests? true/false ");
         }
         public static void EntryIntegerValidation()
         {
@@ -59,7 +59,7 @@ namespace Employee.Constants
         }
         public static void EntryCEOAgeValidation()
         {
-            Console.WriteLine("CEO age must be between 0 and 40!");
+            Console.WriteLine("CEO years cannot be greater than possible years of work! ");
         }
         public static void EntryAgeValidation()
         {
