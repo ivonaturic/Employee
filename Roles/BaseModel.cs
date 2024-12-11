@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Employee.Roles
 {
-    public  class EmployeeBase : IEmployeeBase
+    public  class BaseModel : IBaseModel
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
-        public virtual string GetInfo() => $"{FirstName} {LastName} Age = {Age}";
+        public virtual string GetInfo() => $"First name = {FirstName} Last name = {LastName} Age = {Age}";
     }
 }

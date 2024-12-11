@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Employee.Roles
 {
-    public interface IEmployeeBase
+    public interface IBaseModel
     {
         int Id { get; set; }
         string FirstName { get; set; }

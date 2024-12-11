@@ -1,4 +1,4 @@
-﻿using Employee.Constants;
+﻿using Employee.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Employee.Roles
 {
-    public class Developer : EmployeeBase
+    public class Developer : BaseModel
     {
         public string Project { get; set; }
         public bool IsStudent { get; set; }
