@@ -9,7 +9,7 @@ namespace Employee.Common
 {
     public static class PropertiesDataCapture
     {
-        public static void EnterCommonData(out string inputId, out int id, out string firstName, out string lastName, out string inputAge, out int age)
+        public static void InputCommonData(out string inputId, out int id, out string firstName, out string lastName, out string inputAge, out int age)
         {
             id = 0;
             firstName = null;
@@ -19,7 +19,7 @@ namespace Employee.Common
             inputAge = null;
             do
             {
-                PropertiesDataMessages.InputId();
+                Console.WriteLine(StaticMessages.InputId);
                 inputId = Console.ReadLine();
                 if (!ConsoleValidation.Exit(inputId)) return;
             }
@@ -27,142 +27,117 @@ namespace Employee.Common
             id = int.Parse(inputId);
             do
             {
-                PropertiesDataMessages.InputFirstName();
+                Console.WriteLine(StaticMessages.InputFirstName);
                 firstName = Console.ReadLine();
                 if (!ConsoleValidation.Exit(firstName)) return;
             }
             while (!ConsoleValidation.ValidationNameOrLastName(firstName));
             do
             {
-                PropertiesDataMessages.InputLastName();
+                Console.WriteLine(StaticMessages.InputLastName);
                 lastName = Console.ReadLine();
                 if (!ConsoleValidation.Exit(lastName)) return;
             }
             while (!ConsoleValidation.ValidationNameOrLastName(lastName));
             do
             {
-                PropertiesDataMessages.InputAge();
+                Console.WriteLine(StaticMessages.InputAge);
                 inputAge = Console.ReadLine();
                 if (!ConsoleValidation.Exit(inputAge)) return;
             }
             while (!ConsoleValidation.ValidationAge(inputAge));
             age = int.Parse(inputAge);
         }
-        public static void EnterCeoData(out string inputCeoYears)
+        public static void InputCeoData(out string inputCeoYears)
         {
             inputCeoYears = null;
             do
             {
-                PropertiesDataMessages.InputCEOAge();
+                Console.WriteLine(StaticMessages.InputCEOAge);
                 inputCeoYears = Console.ReadLine();
                 if (!ConsoleValidation.Exit(inputCeoYears)) return;
             }
             while (!ConsoleValidation.ValidationCEOAge(inputCeoYears));
         }
-
-        public static void EnterDesignerData(out string inputProject, out string inputCanDraw)
+        public static void InputProject(out string inputProject) 
         {
             inputProject = null;
-            inputCanDraw = null;
             do
             {
-                PropertiesDataMessages.InputProject();
+                Console.WriteLine(StaticMessages.InputProject);
                 inputProject = Console.ReadLine();
                 if (!ConsoleValidation.Exit(inputProject)) return;
             }
-            while (!ConsoleValidation.ValidationString(inputProject));
+            while (!ConsoleValidation.ValidationEmptyString(inputProject));
+        }
+        public static void InputDesignerData(out string inputProject, out string inputCanDraw)
+        {
+            inputProject = null;
+            inputCanDraw = null;
+            InputProject(out inputProject);
             do
             {
-                PropertiesDataMessages.InputCanDraw();
+                Console.WriteLine(StaticMessages.InputCanDraw);
                 inputCanDraw = Console.ReadLine();
                 if (!ConsoleValidation.Exit(inputCanDraw)) return;
             }
             while (!ConsoleValidation.ValidationBoolean(inputCanDraw));
         }
-        public static void EnterDeveloperData(out string inputProject, out string inputIsStudent)
+        public static void InputDeveloperData(out string inputProject, out string inputIsStudent)
         {
             inputProject = null;
             inputIsStudent = null;
+            InputProject(out inputProject);
             do
             {
-                PropertiesDataMessages.InputProject();
-                inputProject = Console.ReadLine();
-                if (!ConsoleValidation.Exit(inputProject)) return;
-            }
-            while (!ConsoleValidation.ValidationString(inputProject));
-            do
-            {
-                PropertiesDataMessages.InputIsStudent();
+                Console.WriteLine(StaticMessages.InputIsStudent);
                 inputIsStudent = Console.ReadLine();
                 if (!ConsoleValidation.Exit(inputIsStudent)) return;
             }
             while (!ConsoleValidation.ValidationBoolean(inputIsStudent));
         }
-        public static void EnterProjectManager(out string inputProject)
+        public static void InputProjectManagerData(out string inputProject)
         {
             inputProject = null;
-            do
-            {
-                PropertiesDataMessages.InputProject();
-                inputProject = Console.ReadLine();
-                if (!ConsoleValidation.Exit(inputProject)) return;
-            }
-            while (!ConsoleValidation.ValidationString(inputProject));
+            InputProject(out inputProject);
         }
-        public static void EnterSoftwareTester(out string inputProject, out string inputUseAutomatedTests)
+        public static void InputSoftwareTesterData(out string inputProject, out string inputUseAutomatedTests)
         {
             inputProject = null;
             inputUseAutomatedTests = null;
+            InputProject(out inputProject);
             do
             {
-                PropertiesDataMessages.InputProject();
-                inputProject = Console.ReadLine();
-                if (!ConsoleValidation.Exit(inputProject)) return;
-            }
-            while (!ConsoleValidation.ValidationString(inputProject));
-            do
-            {
-                PropertiesDataMessages.InputUseAutomatedTests();
+                Console.WriteLine(StaticMessages.InputUseAutomatedTests);
                 inputUseAutomatedTests = Console.ReadLine();
                 if (!ConsoleValidation.Exit(inputUseAutomatedTests)) return;
             }
             while (!ConsoleValidation.ValidationBoolean(inputUseAutomatedTests));
         }
-        public static void AddEmployeeRole(out string roleforinput) 
+        public static void InputRole(out string inputRole) 
         {
-            roleforinput = null;
+            inputRole = null;
             do
             {
-                StandardMessages.PossibleRoles();
-                roleforinput = Console.ReadLine().ToLower();
-                if (!ConsoleValidation.Exit(roleforinput)) return;
+                Console.WriteLine(StaticMessages.PossibleRoles);
+                inputRole = Console.ReadLine().ToLower();
+                if (!ConsoleValidation.Exit(inputRole)) return;
             } 
-            while (!ConsoleValidation.ValidationRole(roleforinput));
+            while (!ConsoleValidation.ValidationRole(inputRole));
         }
 
-        public static void EnterRemoveId(out string inputId, out int id) 
+        public static void InputRemoveId(out string inputId, out int id) 
         {
             inputId = null;
             id = 0;
             do
             {
-                PropertiesDataMessages.InputId();
+                Console.WriteLine(StaticMessages.InputId);
                 inputId = Console.ReadLine();
                 if (!ConsoleValidation.Exit(inputId)) return;
             }
             while (!ConsoleValidation.ValidationRemoveId(inputId));
             id = int.Parse(inputId);
-        }
-        public static void RoleForRoleList(out string roleforoutput) 
-        {
-            roleforoutput = null;
-            do
-            {
-                StandardMessages.PossibleRoles();
-                roleforoutput = Console.ReadLine().ToLower();
-                if (!ConsoleValidation.Exit(roleforoutput)) return;
-            }
-            while (!ConsoleValidation.ValidationRole(roleforoutput));
         }
     }
 }
