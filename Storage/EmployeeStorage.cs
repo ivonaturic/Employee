@@ -12,12 +12,12 @@ namespace Employee.Storage
     {
         public static List<BaseModel> employeelist = new List<BaseModel>();
 
-        public static void AddEmployees(BaseModel entity) 
+        public static void AddEmployee(BaseModel entity) 
         {
             employeelist.Add(entity);   
         }
 
-        public static void RemoveEmployees(BaseModel entity)
+        public static void RemoveEmployee(BaseModel entity)
         {
             employeelist.Remove(entity);
         }

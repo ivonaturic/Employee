@@ -44,8 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ConstantsCommands.cs" />
-    <Compile Include="Common\PropertiesDataMessages.cs" />
-    <Compile Include="Common\StandardMessages.cs" />
+    <Compile Include="Common\DynamicMessages.cs" />
+    <Compile Include="Common\RoleHelper.cs" />
+    <Compile Include="Common\StaticMessages.cs" />
     <Compile Include="Common\ConstantsRoles.cs" />
     <Compile Include="Common\PropertiesDataCapture.cs" />
     <Compile Include="Program.cs" />

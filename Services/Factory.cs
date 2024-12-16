@@ -14,27 +14,26 @@ namespace Employee.Services
     {
         public static IBaseService CreateRoleService(string role)
         {
-
-            switch (role.ToLower()) 
+            string abbreviatedRole = RoleHelper.GetRoleAbbreviation(role);
+            if (abbreviatedRole == null)
+            {
+                return null;
+            }
+            switch (abbreviatedRole)
             {
                 case ConstantsRoles.CEO:
                     return new CEOService(new CEO());
                 case ConstantsRoles.PM:
-                case ConstantsRoles.pm:
                     return new ProjectManagerService(new ProjectManager());
                 case ConstantsRoles.DSNR:
-                case ConstantsRoles.dsnr:
                     return new DesignerService(new Designer());
                 case ConstantsRoles.DEV:
-                case ConstantsRoles.dev:
                     return new DeveloperService(new Developer());
                 case ConstantsRoles.ST:
-                case ConstantsRoles.st:
                     return new SoftwareTesterService(new SoftwareTester());
                 default:
-                    break;
+                    return null;
             }
-            return null;
         }
         
     }

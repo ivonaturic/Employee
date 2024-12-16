@@ -13,46 +13,45 @@ namespace Employee
         
         static void Main(string[] args)
         {
-            StandardMessages.WelcomeMessage();
+            Console.WriteLine(StaticMessages.WelcomeMessage);
             IBaseModel employee = new BaseModel();
             IBaseService employeeservice = new BaseService<IBaseModel>(employee);
             do
             {
-                StandardMessages.PossibleCommands();
+                Console.WriteLine(StaticMessages.PossibleCommands);
                 string command = Console.ReadLine();
                 switch (command.ToLower())
                 {
                     case ConstantsCommands.HELP:
-                        StandardMessages.HelpCommand();
+                        Console.WriteLine(StaticMessages.HelpCommand);
                         break;
                     case ConstantsCommands.ADD:
-                        string roleforinput;
-                        PropertiesDataCapture.AddEmployeeRole(out roleforinput);
-                        IBaseService employeeService = Factory.CreateRoleService(roleforinput);
-                        if (!ConsoleValidation.RoleType(employeeService)) break;
-                        employeeService.AddEmployeesService();
+                        string inputRole;
+                        PropertiesDataCapture.InputRole(out inputRole);
+                        IBaseService employeeService = Factory.CreateRoleService(inputRole);
+                        if (!ConsoleValidation.CheckRoleInstance(employeeService)) break;
+                        employeeService.AddEmployeeService();
                         break;
                     case ConstantsCommands.REMOVE:
                         string inputId;
                         int id;
-                        PropertiesDataCapture.EnterRemoveId(out inputId, out id);
-                        employeeservice.RemoveEmployeesService(id);
+                        PropertiesDataCapture.InputRemoveId(out inputId, out id);
+                        if (!ConsoleValidation.Exit(inputId)) break;
+                        employeeservice.RemoveEmployeeService(id);
                         break;
                     case ConstantsCommands.DISPLAY:
-                        StandardMessages.ListAllEmployees();
                         employeeservice.DisplayAllEmployees();
                         break;
                     case ConstantsCommands.LIST:
-                        StandardMessages.ListWithoutCEO();
                         employeeservice.DisplayEmployeesWithoutCEO();
                         break;
                     case ConstantsCommands.ROLELIST:
-                        string roleforoutput;
-                        PropertiesDataCapture.RoleForRoleList(out roleforoutput);
-                        employeeservice.ListByRole(roleforoutput);
+                        string outputRole;
+                        PropertiesDataCapture.InputRole(out outputRole);
+                        employeeservice.ListByRole(outputRole);
                         break;
                     default:
-                        StandardMessages.NonExistentCommand();
+                        Console.WriteLine(StaticMessages.NonExistentCommandMessage);
                         break;
                 }
             } while (true);

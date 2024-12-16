@@ -19,11 +19,11 @@ namespace Employee.Services
         {
             developer = dEVELOPER;
         }
-        public override void AddEmployeesService() 
+        public override void AddEmployeeService() 
         {
-            base.AddEmployeesService();
+            base.AddEmployeeService();
             if (!ConsoleValidation.ExitBase(base.inputId, base.firstName, base.lastName, base.inputAge)) return;
-            PropertiesDataCapture.EnterDeveloperData(out inputProject,out inputIsStudent);
+            PropertiesDataCapture.InputDeveloperData(out inputProject,out inputIsStudent);
             if (!ConsoleValidation.Exit(inputProject)) return;
             if (!ConsoleValidation.Exit(inputIsStudent)) return;
             developer.Id = base.id;
@@ -32,8 +32,8 @@ namespace Employee.Services
             developer.Age = base.age;
             developer.Project = inputProject;
             developer.IsStudent = bool.Parse(inputIsStudent);
-            EmployeeStorage.AddEmployees(developer);
-            StandardMessages.AddedSuccessfully();
+            EmployeeStorage.AddEmployee(developer);
+            DynamicMessages.EmployeeAddedSuccessfully(typeof(Developer));
         }
     }
 }

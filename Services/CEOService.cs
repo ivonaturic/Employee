@@ -18,27 +18,27 @@ namespace Employee.Services
         {
             ceo = cEO;  
         }
-        public override void AddEmployeesService() 
+        public override void AddEmployeeService() 
         {
             var checkCEO = EmployeeStorage.AllEmployees().OfType<CEO>().FirstOrDefault();
             if (checkCEO != null)
             {
-                StandardMessages.CEOExist();
+                Console.WriteLine(StaticMessages.CEOExistenceMessage);
                 return;
             }
             else
             {
-                base.AddEmployeesService();
+                base.AddEmployeeService();
                 if(!ConsoleValidation.ExitBase(base.inputId, base.firstName, base.lastName, base.inputAge)) return;
-                PropertiesDataCapture.EnterCeoData(out inputCeoYears);
+                PropertiesDataCapture.InputCeoData(out inputCeoYears);
                 if (!ConsoleValidation.Exit(inputCeoYears)) return;
                 ceo.Id = base.id;
                 ceo.FirstName = base.firstName;
                 ceo.LastName = base.lastName;
                 ceo.Age = base.age;
                 ceo.CeoYears = int.Parse(inputCeoYears);
-                EmployeeStorage.AddEmployees(ceo);
-                StandardMessages.AddedSuccessfully();
+                EmployeeStorage.AddEmployee(ceo);
+                DynamicMessages.EmployeeAddedSuccessfully(typeof(CEO));
             }
         }
     }

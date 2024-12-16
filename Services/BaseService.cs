@@ -24,23 +24,23 @@ namespace Employee.Services
             _employee = employee;
         }
         
-        public virtual void AddEmployeesService() 
+        public virtual void AddEmployeeService() 
         {
-            StandardMessages.NewEmployee();
-            PropertiesDataCapture.EnterCommonData(out inputId, out id, out firstName,out lastName,out inputAge, out age);
+            Console.WriteLine(StaticMessages.NewEmployeeMessage);
+            PropertiesDataCapture.InputCommonData(out inputId, out id, out firstName,out lastName,out inputAge, out age);
         }
-        public void RemoveEmployeesService(int id) 
+        public virtual void RemoveEmployeeService(int id) 
         {
             var rememp = EmployeeStorage.AllEmployees().SingleOrDefault(e => e.Id == id);
             if (rememp == null)
             {
-                StandardMessages.NonExistentEmployee();
+                DynamicMessages.EmployeeNotFoundMessage(id);
                 return;
             }
             else
             {
-                EmployeeStorage.RemoveEmployees(rememp);
-                StandardMessages.EmployeeIsRemoved();
+                EmployeeStorage.RemoveEmployee(rememp);
+                DynamicMessages.EmployeeRemovedMessage(id);
             }
         }
         public virtual void DisplayAllEmployees() 
@@ -48,52 +48,50 @@ namespace Employee.Services
             var allemployees = EmployeeStorage.AllEmployees();
             if (!allemployees.Any())
             {
-                StandardMessages.NoEnteredEmployee();
+                Console.WriteLine(StaticMessages.NoEnteredEmployeeMessage);
             }
             else
             {
+                Console.WriteLine(StaticMessages.ListOfAllEmployeesMessage);
                 foreach (var employee in allemployees)
                 {
                     Console.WriteLine($"{employee.GetInfo()}");
                 }
             }
         }
-        public void DisplayEmployeesWithoutCEO() 
+        public virtual void DisplayEmployeesWithoutCEO() 
         {
             var employeeswithoutceo = EmployeeStorage.AllEmployees().Where(e => e.GetType().Name != "CEO");
             if (!employeeswithoutceo.Any())
             {
-                StandardMessages.NoEnteredEmployee();
+                Console.WriteLine(StaticMessages.NoEnteredEmployeeMessage);
             }
             else
             {
+                Console.WriteLine(StaticMessages.ListWithoutCEOMessage);
                 foreach (var employee in employeeswithoutceo)
                 {
                     Console.WriteLine($"{employee.GetInfo()}");
                 }
             }
         }
-        public void ListByRole(string role) 
+        public virtual void ListByRole(string role) 
         {
-            var roleAbbreviations = new Dictionary<string, string>
+            string abbreviatedRole = RoleHelper.GetRoleAbbreviation(role);
+
+            if (abbreviatedRole != null)
             {
-                { ConstantsRoles.pm, ConstantsRoles.PM }, 
-                { ConstantsRoles.dev, ConstantsRoles.DEV }, 
-                { ConstantsRoles.dsnr, ConstantsRoles.DSNR } ,
-                { ConstantsRoles.st,  ConstantsRoles.ST},
-            };
-            if (roleAbbreviations.ContainsKey(role))
-            {
-                role = roleAbbreviations[role];
+                role = abbreviatedRole;
             }
             var listbyrole = EmployeeStorage.AllEmployees().Where(e => e.GetType().Name.Equals(role, StringComparison.OrdinalIgnoreCase));
             if (!listbyrole.Any())
             {
                 if (!ConsoleValidation.Exit(role)) return;
-                StandardMessages.NoEnteredEmployee();
+                DynamicMessages.NoEmployeesForRoleMessage(role);
             }
             else
             {
+                DynamicMessages.EmployeeListByRole(role);
                 foreach (var employee in listbyrole) 
                 {
                     Console.WriteLine($"{employee.GetInfo()}");

@@ -19,11 +19,11 @@ namespace Employee.Services
         {
             designer = dESIGNER;
         }
-        public override void AddEmployeesService()
+        public override void AddEmployeeService()
         {
-            base.AddEmployeesService();
+            base.AddEmployeeService();
             if(!ConsoleValidation.ExitBase(base.inputId, base.firstName, base.lastName, base.inputAge)) return;
-            PropertiesDataCapture.EnterDesignerData(out inputProject, out inputCanDraw);
+            PropertiesDataCapture.InputDesignerData(out inputProject, out inputCanDraw);
             if (!ConsoleValidation.Exit(inputProject)) return;
             if (!ConsoleValidation.Exit(inputCanDraw)) return;
             designer.Id = base.id;
@@ -32,8 +32,8 @@ namespace Employee.Services
             designer.Age = base.age;
             designer.Project = inputProject;
             designer.CanDraw = bool.Parse(inputCanDraw);
-            EmployeeStorage.AddEmployees(designer);
-            StandardMessages.AddedSuccessfully();
+            EmployeeStorage.AddEmployee(designer);
+            DynamicMessages.EmployeeAddedSuccessfully(typeof(Designer));
         }
     }
 }

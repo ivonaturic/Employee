@@ -10,8 +10,8 @@ namespace Employee.Services
 {
     public interface IBaseService
     {
-        void AddEmployeesService();
-        void RemoveEmployeesService(int id);
+        void AddEmployeeService();
+        void RemoveEmployeeService(int id);
         void DisplayAllEmployees();
         void DisplayEmployeesWithoutCEO();
         void ListByRole(string role);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Employee.Roles
 {
-    public  class BaseModel : IBaseModel
+    public class BaseModel : IBaseModel
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

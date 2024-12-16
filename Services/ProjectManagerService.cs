@@ -19,19 +19,19 @@ namespace Employee.Services
             projectmanager = pROJECTMANAGER;
             
         }
-        public override void AddEmployeesService() 
+        public override void AddEmployeeService() 
         {
-            base.AddEmployeesService();
+            base.AddEmployeeService();
             if(!ConsoleValidation.ExitBase(base.inputId, base.firstName, base.lastName, base.inputAge)) return;
-            PropertiesDataCapture.EnterProjectManager(out inputProject);
+            PropertiesDataCapture.InputProjectManagerData(out inputProject);
             if (!ConsoleValidation.Exit(inputProject)) return;
             projectmanager.Id = base.id;
             projectmanager.FirstName = base.firstName;
             projectmanager.LastName = base.lastName;
             projectmanager.Age = base.age;
             projectmanager.Project = inputProject;
-            EmployeeStorage.AddEmployees(projectmanager);
-            StandardMessages.AddedSuccessfully();
+            EmployeeStorage.AddEmployee(projectmanager);
+            DynamicMessages.EmployeeAddedSuccessfully(typeof(ProjectManager));
         }
     }
 }

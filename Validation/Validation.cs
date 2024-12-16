@@ -7,139 +7,151 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Employee.Common;
 using Employee.Services;
+using System.Data;
 
 namespace Employee.Validation
 {
 
     public class ConsoleValidation
     {
-        public static bool ValidationInputId(string idstring) 
+        public static bool ValidationInputId(string inputId) 
         {
             int id;
-            if (int.TryParse(idstring, out id))
+            if (int.TryParse(inputId, out id))
             {
                 if (id >= 1)
                 {
-                    var rememp = EmployeeStorage.AllEmployees().FirstOrDefault(e => e.Id == id);
-                    if (rememp != null)
+                    var findEmployee = EmployeeStorage.AllEmployees().FirstOrDefault(e => e.Id == id);
+                    if (findEmployee != null)
                     {
-                        StandardMessages.EmployeeExists();
+                        DynamicMessages.EmployeeAlreadyExistsMessage(id);
                         return false;
                     }
                     return true;
                 }
                 else
                 {
-                    PropertiesDataMessages.EntryPositiveIntegerValidation();
+                    Console.WriteLine(StaticMessages.PositiveIntegerValidationMessage);
                     return false;
                 }
             }
             else
             {
-                PropertiesDataMessages.EntryIntegerValidation();
+                Console.WriteLine(StaticMessages.IntegerValidationMessage);
                 return false;
             }
-
-
-
         }
-        public static bool ValidationString(string input) 
+        public static bool ValidationRemoveId(string removeId)
+        {
+            int id;
+            if (int.TryParse(removeId, out id))
+            {
+                if (id >= 1)
+                {
+                    var findEmployee = EmployeeStorage.AllEmployees().FirstOrDefault(e => e.Id == id);
+                    if (findEmployee == null)
+                    {
+                        DynamicMessages.EmployeeNotFoundMessage(id);
+                        return false;
+                    }
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine(StaticMessages.PositiveIntegerValidationMessage);
+                    return false;
+                }
+            }
+            else
+            {
+                Console.WriteLine(StaticMessages.IntegerValidationMessage);
+                return false;
+            }
+        }
+        public static bool ValidationEmptyString(string input) 
         {
             if (string.IsNullOrWhiteSpace(input)) 
             {
-                PropertiesDataMessages.EmptyEntry();
+                Console.WriteLine(StaticMessages.EmptyEntryMessage);
                 return false;
             }
             return true;
         }
-        public static bool ValidationBoolean(string x)
+        public static bool ValidationBoolean(string input)
         {
-            bool pp;
-            if (bool.TryParse(x, out pp))
+            bool isValid;
+            if (bool.TryParse(input, out isValid))
             {
                 return true;
             }
             else
             {
-                PropertiesDataMessages.EntryBooleanValidation();
+                Console.WriteLine(StaticMessages.BooleanValidationMessage);
                 return false;
             }
         }
-        public static int broj;
-        public static bool ValidationAge(string x)
+        public static int age;
+        public static bool ValidationAge(string inputAge)
         {
-            //int broj;
-            if (int.TryParse(x, out broj))
+            if (int.TryParse(inputAge, out age))
             {
-                if (broj>=18 && broj<= 67)
+                if (age>=18 && age <= 67)
                 {
                     return true;
                 }
                 else 
                 {
-                    PropertiesDataMessages.EntryAgeValidation();
+                    Console.WriteLine(StaticMessages.AgeValidationMessage);
                     return false;
                 }
             }
             else 
             {
-                PropertiesDataMessages.EntryIntegerValidation();
+                Console.WriteLine(StaticMessages.IntegerValidationMessage);
                 return false;
             }
             
         }
-        public static bool ValidationCEOAge(string x)
+        public static bool ValidationCEOAge(string inputCeoYears)
         {
-            int ceogodine;
-            if (int.TryParse(x, out ceogodine))
+            int ceoYears;
+            if (int.TryParse(inputCeoYears, out ceoYears))
             {
-                if (ceogodine <= broj-18)
+                if (ceoYears >= 0 && ceoYears <= age-18)
                 {
                     return true;
                 }
                 else
                 {
-                    PropertiesDataMessages.EntryCEOAgeValidation();
+                    DynamicMessages.CEOAgeValidationMessage(age);
                     return false;
                 }
 
             }
             else
             {
-                PropertiesDataMessages.EntryIntegerValidation();
+                Console.WriteLine(StaticMessages.IntegerValidationMessage);
                 return false;
             }
 
         }
-        public static bool ValidationRole(string x) 
+        public static bool ValidationNameOrLastName(string input) 
         {
-            if (x == ConstantsRoles.CEO || x == ConstantsRoles.PM || x == ConstantsRoles.pm || x == ConstantsRoles.DEV || x == ConstantsRoles.dev || x == ConstantsRoles.DSNR || x ==ConstantsRoles.dsnr || x == ConstantsRoles.ST || x == ConstantsRoles.st)
-            {
-
-                return true;
-            }
-            else
-            {
-                StandardMessages.NonExistentRole();
-                return false;
-            }
-        }
-        public static bool ValidationNameOrLastName(string x) 
-        {
-            if (Regex.IsMatch(x, @"^[a-zA-Z]+$"))
+            //@"^[a-zA-ZčćžšđČĆŽŠĐljnj]+$"
+            if (Regex.IsMatch(input, @"^[a-zA-Z]+$"))
             {
                 return true;
             }
             else 
             {
-                PropertiesDataMessages.EntryLetterValidation();
+                Console.WriteLine(StaticMessages.LetterValidationMessage);
                 return false;
                 
             }
         }
-        public static bool Exit(string entry)
+        public static bool Exit(string input)
         {
-            if (entry.ToLower() == ConstantsCommands.EXIT)
+            if (input.ToLower() == ConstantsCommands.EXIT)
             {
                 return false;
             }
@@ -159,7 +171,7 @@ namespace Employee.Validation
                 return true;
             }
         }
-        public static bool RoleType(IBaseService role) 
+        public static bool CheckRoleInstance(IBaseService role) 
         {
             if (role == null) 
             {
@@ -167,38 +179,16 @@ namespace Employee.Validation
             }
             return true;
         }
-        public static bool RoleType(string role)
+        public static bool ValidationRole(string role)
         {
-            if (role == null)
+            string abbreviatedRole = RoleHelper.GetRoleAbbreviation(role);
+            if (abbreviatedRole != null)
             {
-                return false;
-            }
-            return true;
-        }
-        public static bool ValidationRemoveId(string removeId) 
-        {
-            int id;
-            if (int.TryParse(removeId, out id))
-            {
-                if (id >= 1)
-                {
-                    var rememp = EmployeeStorage.AllEmployees().FirstOrDefault(e => e.Id == id);
-                    if (rememp == null)
-                    {
-                        StandardMessages.NonExistentEmployee();
-                        return false;
-                    }
-                    return true;
-                }
-                else
-                {
-                    PropertiesDataMessages.EntryPositiveIntegerValidation();
-                    return false;
-                }
+                return true;
             }
             else
             {
-                PropertiesDataMessages.EntryIntegerValidation();
+                Console.WriteLine(StaticMessages.NonExistentRoleMessage);
                 return false;
             }
         }

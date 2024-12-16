@@ -20,11 +20,11 @@ namespace Employee.Services
         {
             softwaretester = sOFTWARETESTER;
         }
-        public override void AddEmployeesService() 
+        public override void AddEmployeeService() 
         {
-            base.AddEmployeesService();
+            base.AddEmployeeService();
             if (!ConsoleValidation.ExitBase(base.inputId, base.firstName, base.lastName, base.inputAge)) return;
-            PropertiesDataCapture.EnterSoftwareTester(out inputProject, out inputUseAutomatedTests);
+            PropertiesDataCapture.InputSoftwareTesterData(out inputProject, out inputUseAutomatedTests);
             if (!ConsoleValidation.Exit(inputProject)) return;
             if (!ConsoleValidation.Exit(inputUseAutomatedTests)) return;
             softwaretester.Id = base.id;
@@ -33,8 +33,8 @@ namespace Employee.Services
             softwaretester.Age = base.age;
             softwaretester.Project = inputProject;
             softwaretester.UseAutomatedTests = bool.Parse(inputUseAutomatedTests);
-            EmployeeStorage.AddEmployees(softwaretester);
-            StandardMessages.AddedSuccessfully();
+            EmployeeStorage.AddEmployee(softwaretester);
+            DynamicMessages.EmployeeAddedSuccessfully(typeof(SoftwareTester));
         }
     }
 }
