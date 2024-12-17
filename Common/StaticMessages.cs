@@ -10,7 +10,7 @@ namespace Employee.Common
 {
     public class StaticMessages
     {
-        //General
+        //Generally
         public static readonly string WelcomeMessage = "Welcome to application!";
         public static readonly string PossibleCommands = "Possible commands: Help, Add, Remove, Display, List, RoleList";
         public static readonly string HelpCommand = "Application will allow you to create and search employees profiles by role! \n" +
@@ -34,19 +34,19 @@ namespace Employee.Common
         public static readonly string InputUseAutomatedTests = "Use automated tests? true/false ";
 
         //Validation messages
-        public static readonly string IntegerValidationMessage = "The entry must be a number!";
+        public static readonly string IntegerValidationMessage = "The input must be a number!";
         public static readonly string PositiveIntegerValidationMessage = "Id must be greater or equals 1!";
-        public static readonly string LetterValidationMessage = "The entry must be a letter!";
+        public static readonly string LetterValidationMessage = "The input must be a letter!";
         public static readonly string AgeValidationMessage = "Age must be between 18 and 67!";
         public static readonly string BooleanValidationMessage = "The input must be true or false!";
-        public static readonly string EmptyEntryMessage = "Entry cannot be empty.";
+        public static readonly string EmptyEntryMessage = "The input cannot be empty.";
 
         //Error messages
         public static readonly string NonExistentCommandMessage = "Non-existent command!";
         public static readonly string NonExistentRoleMessage = "Non-existent role!";
 
         public static readonly string NewEmployeeMessage = "New employee: ";
-        public static readonly string NoEnteredEmployeeMessage = "No employees entered!";
+        public static readonly string NoEnteredEmployeeMessage = "List does not contain any employees.";
         public static readonly string ListOfAllEmployeesMessage = "List of all employees: ";
         public static readonly string ListWithoutCEOMessage = "List without CEO: ";
         public static readonly string CEOExistenceMessage = "CEO already exists, there can only be one!"; 

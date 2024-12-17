@@ -27,7 +27,7 @@ namespace Employee.Common
         }
         public static void NoEmployeesForRoleMessage(string role)
         {
-            Console.WriteLine($"No employees entered for {role} role!");
+            Console.WriteLine($"No entered employees for {role} role!");
         }
         public static void EmployeeRemovedMessage(int id)
         {

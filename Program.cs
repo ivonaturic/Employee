@@ -50,6 +50,9 @@ namespace Employee
                         PropertiesDataCapture.InputRole(out outputRole);
                         employeeservice.ListByRole(outputRole);
                         break;
+                    case ConstantsCommands.EXIT:
+                        Environment.Exit(0);
+                        break;
                     default:
                         Console.WriteLine(StaticMessages.NonExistentCommandMessage);
                         break;
